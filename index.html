@@ -1,12 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>For You 🕷️</title>
+<title>For You 🕷️❤️</title>
 
 <style>
+
+/* =========================================================
+   BASIC
+========================================================= */
 
 *{
     box-sizing:border-box;
@@ -20,180 +25,300 @@ html{
 
 body{
     min-height:100vh;
-    background:
-        radial-gradient(circle at 50% 20%, #3b0712 0%, #160309 35%, #050507 80%);
-    color:white;
-    font-family:Georgia,serif;
     overflow-x:hidden;
+    color:white;
+    font-family:Georgia,"Times New Roman",serif;
+
+    background:
+        radial-gradient(
+            circle at 50% 15%,
+            #410b19 0%,
+            #1a050d 35%,
+            #070307 75%,
+            #020203 100%
+        );
 }
 
-/* ==================================================
-   GENERAL
-================================================== */
+button,
+input{
+    font-family:inherit;
+}
 
 .hidden{
     display:none !important;
 }
 
-button{
-    font-family:inherit;
-}
 
-.center{
-    min-height:100vh;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    text-align:center;
-    padding:20px;
-}
+/* =========================================================
+   WEB PASSCODE SCREEN
+========================================================= */
 
-/* ==================================================
-   SPIDER WEB
-================================================== */
+.password-screen{
 
-.web-screen{
     position:fixed;
     inset:0;
-    z-index:9999;
-    background:#030304;
+
+    z-index:10000;
+
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
+
     overflow:hidden;
-}
 
-.web{
-    position:absolute;
-    width:150vmax;
-    height:150vmax;
-    border-radius:50%;
-    opacity:.8;
-    transition:
-        transform 2.5s cubic-bezier(.2,.8,.2,1),
-        opacity 2s;
-}
-
-.web::before,
-.web::after{
-    content:"";
-    position:absolute;
-    inset:0;
-    border-radius:50%;
-}
-
-.web::before{
     background:
-        repeating-radial-gradient(
+        radial-gradient(
             circle,
-            transparent 0 70px,
-            rgba(255,255,255,.13) 72px 74px
+            #260712,
+            #050306 70%
         );
+
+    transition:
+        opacity 1.5s,
+        visibility 1.5s;
 }
 
-.web::after{
+.password-screen.hide{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+
+
+/* Giant web */
+
+.giant-web{
+
+    position:absolute;
+
+    width:115vmax;
+    height:115vmax;
+
+    border-radius:50%;
+
     background:
+
+        repeating-radial-gradient(
+            circle at center,
+            transparent 0px,
+            transparent 70px,
+            rgba(255,255,255,.12) 72px,
+            transparent 75px
+        ),
+
         repeating-conic-gradient(
             from 0deg,
-            transparent 0deg 14deg,
-            rgba(255,255,255,.11) 14deg 15deg
+            transparent 0deg,
+            transparent 14deg,
+            rgba(255,255,255,.13) 14.5deg,
+            transparent 15.5deg
         );
+
+    animation:
+        webBreath 5s ease-in-out infinite;
+
+    transition:
+        transform 2.7s cubic-bezier(.15,.8,.2,1),
+        opacity 2.2s;
 }
 
-.web-screen.open .web{
-    transform:scale(4) rotate(18deg);
+@keyframes webBreath{
+
+    0%,100%{
+        transform:scale(1) rotate(0deg);
+    }
+
+    50%{
+        transform:scale(1.035) rotate(2deg);
+    }
+}
+
+
+/* web opening */
+
+.password-screen.web-opening .giant-web{
+
+    transform:
+        scale(5)
+        rotate(25deg);
+
     opacity:0;
+
 }
 
-.web-center{
+
+/* password card */
+
+.password-card{
+
     position:relative;
-    z-index:2;
-    width:min(90%,420px);
-    padding:35px 25px;
-    border:1px solid rgba(255,255,255,.15);
-    border-radius:25px;
-    background:rgba(10,5,8,.78);
-    backdrop-filter:blur(10px);
-    box-shadow:0 0 50px rgba(255,0,50,.2);
-}
+    z-index:5;
 
-.web-center h1{
-    font-size:28px;
-    margin-bottom:8px;
-}
+    width:min(370px,88%);
 
-.web-center p{
-    color:#d8bfc6;
-    margin-bottom:25px;
-}
+    padding:35px 27px;
 
-.password-box{
-    width:100%;
-    padding:15px;
-    border-radius:14px;
-    border:1px solid #8c3045;
-    background:#11070b;
-    color:white;
-    outline:none;
     text-align:center;
-    font-size:17px;
+
+    border-radius:26px;
+
+    border:1px solid rgba(255,255,255,.18);
+
+    background:
+        rgba(7,3,7,.82);
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+        0 0 70px rgba(255,0,60,.18);
+
+    animation:
+        passwordFloat 4s ease-in-out infinite;
 }
 
-.password-box:focus{
-    border-color:#ff5277;
+@keyframes passwordFloat{
+
+    50%{
+        transform:translateY(-7px);
+    }
+
+}
+
+.password-spider{
+    font-size:45px;
+    margin-bottom:10px;
+}
+
+.password-card h1{
+    font-size:27px;
+    letter-spacing:3px;
+    margin-bottom:10px;
+}
+
+.password-card p{
+    color:#d8b8c1;
+    font-size:13px;
+    line-height:1.7;
+    margin-bottom:23px;
+}
+
+.password-input{
+
+    width:100%;
+
+    padding:14px 16px;
+
+    color:white;
+
+    background:#10070c;
+
+    border:1px solid #843249;
+
+    border-radius:30px;
+
+    outline:none;
+
+    text-align:center;
+
+    font-size:16px;
+
+    letter-spacing:3px;
+}
+
+.password-input:focus{
+    border-color:#ff5278;
     box-shadow:0 0 20px rgba(255,50,100,.25);
 }
 
-.unlock-btn{
+.unlock-button{
+
     margin-top:15px;
-    padding:13px 28px;
+
+    width:100%;
+
+    padding:14px;
+
     border:none;
     border-radius:30px;
-    background:linear-gradient(135deg,#ff416c,#8d1835);
+
     color:white;
-    font-size:16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff416c,
+            #8d1735
+        );
+
     cursor:pointer;
-    box-shadow:0 8px 25px rgba(255,40,90,.25);
+
+    font-size:15px;
+
+    box-shadow:
+        0 10px 30px rgba(255,30,80,.25);
+
+    transition:.3s;
 }
 
-.error{
-    color:#ff718f;
-    margin-top:12px;
+.unlock-button:hover{
+    transform:translateY(-3px);
+}
+
+.password-error{
     min-height:20px;
+    margin-top:12px;
+    color:#ff7795;
+    font-size:12px;
 }
 
-/* ==================================================
+
+/* =========================================================
    CURTAINS
-================================================== */
+========================================================= */
 
 .curtains{
+
     position:fixed;
     inset:0;
+
     z-index:9000;
-    pointer-events:none;
+
     display:flex;
+
+    pointer-events:none;
+
 }
 
 .curtain{
+
     width:50%;
     height:100%;
+
     background:
+
         repeating-linear-gradient(
             90deg,
-            #27030b 0px,
-            #430816 25px,
-            #26030a 50px
+            #170207 0px,
+            #420a17 25px,
+            #24030c 48px,
+            #510b1c 72px
         );
-    box-shadow:0 0 50px #000;
-    transition:transform 2.5s cubic-bezier(.7,0,.2,1);
+
+    box-shadow:
+        inset 0 0 60px rgba(0,0,0,.7),
+        0 0 50px rgba(0,0,0,.8);
+
+    transition:
+        transform 2.8s cubic-bezier(.7,0,.15,1);
+
 }
 
 .curtain.left{
-    transform-origin:left;
+    transform-origin:left center;
 }
 
 .curtain.right{
-    transform-origin:right;
+    transform-origin:right center;
 }
 
 .curtains.open .left{
@@ -204,617 +329,706 @@ button{
     transform:translateX(105%);
 }
 
-/* ==================================================
+
+/* =========================================================
    BIRTHDAY HEART INTRO
-================================================== */
+========================================================= */
 
 .birthday-intro{
+
     position:fixed;
     inset:0;
-    z-index:8000;
-    background:#050306;
+
+    z-index:8500;
+
     display:flex;
-    justify-content:center;
+
     align-items:center;
+    justify-content:center;
+
+    background:#030205;
+
     overflow:hidden;
-    opacity:1;
+
+    opacity:0;
+
     transition:opacity 1.5s;
+
+}
+
+.birthday-intro.show{
+    opacity:1;
 }
 
 .birthday-intro.fade{
     opacity:0;
-    pointer-events:none;
 }
 
-.heart-particles{
+
+/* glitter canvas */
+
+.heart-canvas{
+
     position:absolute;
+
     inset:0;
+
+    width:100%;
+    height:100%;
+
 }
 
-.particle{
-    position:absolute;
-    width:5px;
-    height:5px;
-    border-radius:50%;
-    background:#ff5079;
-    box-shadow:0 0 12px #ff5079;
-    opacity:0;
-    animation:heartForm 3.5s forwards;
-}
 
-@keyframes heartForm{
+/* Birthday text */
 
-    0%{
-        transform:translate(
-            var(--sx),
-            var(--sy)
-        );
-        opacity:0;
-    }
+.birthday-word{
 
-    35%{
-        opacity:1;
-    }
-
-    75%{
-        opacity:1;
-    }
-
-    100%{
-        transform:translate(
-            var(--tx),
-            var(--ty)
-        );
-        opacity:1;
-    }
-}
-
-.birthday-text{
     position:relative;
-    z-index:3;
-    font-family:Arial,sans-serif;
-    font-weight:900;
-    font-size:clamp(30px,9vw,70px);
-    letter-spacing:3px;
-    text-align:center;
+
+    z-index:5;
+
+    display:flex;
+    flex-direction:column;
+
+    align-items:center;
+
     opacity:0;
-    transform:scale(.5);
-    transition:all 1.5s;
+
+    transform:scale(.45);
+
+    transition:
+        opacity 1.5s ease,
+        transform 1.5s cubic-bezier(.2,.8,.2,1);
+
+    font-family:Arial,sans-serif;
+
+    font-weight:900;
+
+    text-align:center;
+
+    line-height:.95;
+
+    letter-spacing:2px;
+
     text-shadow:
-        0 0 10px #fff,
-        0 0 30px #ff3d70,
-        0 0 60px #ff174f;
+        0 0 10px white,
+        0 0 25px #ff4770,
+        0 0 55px #ff174f;
+
 }
 
-.birthday-text.show{
+.birthday-word.show{
+
     opacity:1;
+
     transform:scale(1);
+
 }
 
-.birthday-text span:nth-child(1){color:#ff477e;}
-.birthday-text span:nth-child(2){color:#ffd166;}
-.birthday-text span:nth-child(3){color:#70e1ff;}
-.birthday-text span:nth-child(4){color:#b68cff;}
-.birthday-text span:nth-child(5){color:#7dff9e;}
-.birthday-text span:nth-child(6){color:#ff8ac2;}
-.birthday-text span:nth-child(7){color:#ffcc66;}
-.birthday-text span:nth-child(8){color:#73d5ff;}
-.birthday-text span:nth-child(9){color:#ff6699;}
-.birthday-text span:nth-child(10){color:#c69cff;}
-.birthday-text span:nth-child(11){color:#7dffbb;}
-.birthday-text span:nth-child(12){color:#ff759b;}
-.birthday-text span:nth-child(13){color:#ffd166;}
 
-/* ==================================================
+.birthday-line{
+    display:flex;
+    justify-content:center;
+}
+
+
+/* Every letter has a different colour */
+
+.birthday-line span:nth-child(1){color:#ff477e;}
+.birthday-line span:nth-child(2){color:#ffd166;}
+.birthday-line span:nth-child(3){color:#70dfff;}
+.birthday-line span:nth-child(4){color:#c08cff;}
+.birthday-line span:nth-child(5){color:#7dff9e;}
+
+.birthday-line.second span:nth-child(1){color:#ff8ac2;}
+.birthday-line.second span:nth-child(2){color:#ffd166;}
+.birthday-line.second span:nth-child(3){color:#72d8ff;}
+.birthday-line.second span:nth-child(4){color:#ff6d96;}
+.birthday-line.second span:nth-child(5){color:#b991ff;}
+.birthday-line.second span:nth-child(6){color:#72ffb1;}
+.birthday-line.second span:nth-child(7){color:#ff739b;}
+.birthday-line.second span:nth-child(8){color:#ffd166;}
+
+
+/* =========================================================
    MAIN
-================================================== */
+========================================================= */
 
 .main{
-    min-height:100vh;
-    padding:70px 18px 100px;
+
     position:relative;
+
+    min-height:100vh;
+
+    padding:
+        65px
+        18px
+        120px;
+
     overflow:hidden;
+
 }
 
-.main::before{
+.main:before{
+
     content:"";
+
     position:absolute;
+
     inset:0;
+
     pointer-events:none;
-    opacity:.18;
-    background-image:
-        linear-gradient(45deg,transparent 48%,#fff 49%,transparent 50%),
-        linear-gradient(-45deg,transparent 48%,#fff 49%,transparent 50%);
-    background-size:90px 90px;
-    mask-image:linear-gradient(to bottom,black,transparent);
+
+    opacity:.13;
+
+    background:
+
+        repeating-radial-gradient(
+            circle at center,
+            transparent 0 75px,
+            rgba(255,255,255,.13) 76px,
+            transparent 78px
+        );
+
 }
 
 .content{
+
     position:relative;
+
     z-index:5;
-    width:min(680px,100%);
+
+    width:min(720px,100%);
+
     margin:auto;
+
 }
 
-/* ==================================================
-   TITLE
-================================================== */
 
-.title-card{
+/* =========================================================
+   HEADER
+========================================================= */
+
+.title{
+
     text-align:center;
-    margin-bottom:45px;
-    animation:fadeUp 1s ease;
+
+    margin-bottom:50px;
+
+    animation:fadeUp 1.2s ease;
+
 }
 
-.small-title{
-    color:#df8499;
+.classified{
+
+    color:#d87891;
+
+    font-size:10px;
+
     letter-spacing:4px;
-    font-size:12px;
+
     text-transform:uppercase;
+
 }
 
-.title-card h1{
-    margin-top:12px;
-    font-size:clamp(38px,10vw,70px);
+.title-spider{
+
+    font-size:43px;
+
+    margin:12px 0;
+
+    animation:
+        spiderSwing 3s ease-in-out infinite;
+
 }
 
-.title-card p{
-    color:#c9aeb5;
-    margin-top:10px;
+@keyframes spiderSwing{
+
+    0%,100%{
+        transform:rotate(-7deg);
+    }
+
+    50%{
+        transform:rotate(7deg);
+    }
+
 }
 
-/* ==================================================
-   ENVELOPE
-================================================== */
+.title h1{
+
+    font-size:
+        clamp(38px,10vw,70px);
+
+    margin-bottom:10px;
+
+}
+
+.title p{
+
+    color:#caaeb6;
+
+    font-size:15px;
+
+}
+
+
+/* =========================================================
+   ENVELOPE AREA
+========================================================= */
 
 .envelope-area{
-    min-height:440px;
+
+    min-height:500px;
+
     display:flex;
+
     flex-direction:column;
-    justify-content:center;
+
     align-items:center;
+
+    justify-content:center;
+
+    text-align:center;
+
     position:relative;
+
 }
 
-.envelope{
-    width:min(350px,90vw);
-    height:220px;
-    position:relative;
-    cursor:pointer;
-    perspective:800px;
-    filter:drop-shadow(0 15px 30px rgba(0,0,0,.5));
-}
 
-.env-body{
-    position:absolute;
-    inset:0;
-    background:#fffaf8;
-    border-radius:8px;
-    box-shadow:
-        0 0 0 1px rgba(0,0,0,.08),
-        0 20px 40px rgba(0,0,0,.35);
-}
-
-.env-left,
-.env-right{
-    position:absolute;
-    bottom:0;
-    width:0;
-    height:0;
-    border-bottom:110px solid #eadedc;
-}
-
-.env-left{
-    left:0;
-    border-right:175px solid transparent;
-}
-
-.env-right{
-    right:0;
-    border-left:175px solid transparent;
-}
-
-.env-flap{
-    position:absolute;
-    top:0;
-    left:0;
-    width:0;
-    height:0;
-    border-left:175px solid transparent;
-    border-right:175px solid transparent;
-    border-top:115px solid #fffdfb;
-    transform-origin:top;
-    transition:transform 1s ease;
-    z-index:5;
-}
-
-.envelope.open .env-flap{
-    transform:rotateX(180deg);
-}
-
-.letter-preview{
-    position:absolute;
-    width:78%;
-    height:170px;
-    left:11%;
-    top:25px;
-    background:#fffdf7;
-    color:#321a20;
-    padding:20px;
-    border-radius:3px;
-    z-index:2;
-    box-shadow:0 3px 15px rgba(0,0,0,.2);
-    transition:transform 1.2s ease;
-}
-
-.envelope.open .letter-preview{
-    transform:translateY(-125px);
-}
-
-.letter-preview h3{
-    font-size:18px;
-    margin-bottom:10px;
-}
-
-.letter-preview p{
-    font-size:12px;
-    line-height:1.6;
-}
+/* floating hearts around envelope */
 
 .envelope-hearts{
+
     position:absolute;
-    inset:-55px;
+
+    width:380px;
+    height:350px;
+
     pointer-events:none;
+
 }
 
-.eheart{
+.envelope-heart{
+
     position:absolute;
-    font-size:20px;
-    animation:floatHeart 2.5s infinite ease-in-out;
+
+    font-size:22px;
+
+    color:#ff7194;
+
+    filter:
+        drop-shadow(0 0 9px rgba(255,60,100,.8));
+
+    animation:
+        envelopeHeartFloat
+        2.5s
+        ease-in-out
+        infinite;
+
 }
 
-.eheart:nth-child(1){left:10%;top:25%;}
-.eheart:nth-child(2){right:10%;top:10%;animation-delay:.5s;}
-.eheart:nth-child(3){left:0;bottom:15%;animation-delay:1s;}
-.eheart:nth-child(4){right:0;bottom:25%;animation-delay:1.5s;}
-.eheart:nth-child(5){left:45%;top:-15%;animation-delay:.8s;}
-
-@keyframes floatHeart{
-    0%,100%{transform:translateY(0) rotate(-8deg);opacity:.7;}
-    50%{transform:translateY(-15px) rotate(8deg);opacity:1;}
+.envelope-heart:nth-child(1){
+    left:7%;
+    top:35%;
 }
 
-.open-envelope-text{
-    margin-top:35px;
-    color:#e8cbd2;
+.envelope-heart:nth-child(2){
+    right:8%;
+    top:25%;
+    animation-delay:.4s;
 }
 
-.read-btn{
-    margin-top:16px;
-    padding:14px 28px;
-    border:none;
-    border-radius:30px;
-    background:linear-gradient(135deg,#ff527b,#9b1e43);
-    color:white;
+.envelope-heart:nth-child(3){
+    left:18%;
+    bottom:12%;
+    animation-delay:.8s;
+}
+
+.envelope-heart:nth-child(4){
+    right:15%;
+    bottom:18%;
+    animation-delay:1.2s;
+}
+
+.envelope-heart:nth-child(5){
+    left:45%;
+    top:2%;
+    animation-delay:.6s;
+}
+
+@keyframes envelopeHeartFloat{
+
+    0%,100%{
+        transform:translateY(0) scale(.8) rotate(-8deg);
+        opacity:.6;
+    }
+
+    50%{
+        transform:translateY(-13px) scale(1.15) rotate(8deg);
+        opacity:1;
+    }
+
+}
+
+
+/* =========================================================
+   ENVELOPE — REBUILT
+========================================================= */
+
+.envelope{
+
+    position:relative;
+
+    width:min(340px,86vw);
+
+    height:220px;
+
     cursor:pointer;
-    font-size:16px;
-    box-shadow:0 10px 30px rgba(255,50,100,.25);
-    transition:.3s;
+
+    filter:
+        drop-shadow(0 20px 30px rgba(0,0,0,.45));
+
+    transition:
+        transform .5s ease;
+
 }
 
-.read-btn:hover{
-    transform:translateY(-3px) scale(1.03);
+.envelope:hover{
+    transform:translateY(-5px);
 }
 
-/* ==================================================
-   ROLL LETTER
-================================================== */
+
+/* main white body */
+
+.envelope-body{
+
+    position:absolute;
+
+    inset:0;
+
+    z-index:3;
+
+    overflow:hidden;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #f8f1f2
+        );
+
+    border-radius:8px;
+
+    border:1px solid rgba(255,255,255,.9);
+
+}
+
+
+/* diagonal folds */
+
+.envelope-body:before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        linear-gradient(
+            35deg,
+            transparent 49%,
+            #e7dfe0 50%,
+            transparent 51%
+        );
+
+    opacity:.9;
+
+}
+
+.envelope-body:after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+        linear-gradient(
+            -35deg,
+            transparent 49%,
+            #e7dfe0 50%,
+            transparent 51%
+        );
+
+}
+
+
+/* Letter inside */
+
+.inside-letter{
+
+    position:absolute;
+
+    z-index:2;
+
+    left:8%;
+
+    width:84%;
+
+    height:165px;
+
+    top:42px;
+
+    padding:20px;
+
+    color:#351c23;
+
+    background:
+        linear-gradient(
+            #fffef8,
+            #f5ead1
+        );
+
+    border-radius:4px;
+
+    box-shadow:
+        0 5px 15px rgba(0,0,0,.25);
+
+    transition:
+        transform 1.5s
+        cubic-bezier(.18,.9,.25,1);
+
+}
+
+.inside-letter h3{
+
+    font-size:20px;
+
+    margin-bottom:9px;
+
+}
+
+.inside-letter p{
+
+    font-size:12px;
+
+    line-height:1.6;
+
+}
+
+
+/* front triangular fold */
+
+.front-fold{
+
+    position:absolute;
+
+    z-index:5;
+
+    left:0;
+    bottom:0;
+
+    width:0;
+    height:0;
+
+    border-left:
+        calc(min(340px,86vw)/2)
+        solid transparent;
+
+    border-right:
+        calc(min(340px,86vw)/2)
+        solid transparent;
+
+    border-bottom:
+        125px
+        solid #eee4e5;
+
+}
+
+
+/* top flap */
+
+.envelope-flap{
+
+    position:absolute;
+
+    z-index:7;
+
+    top:0;
+    left:0;
+
+    width:0;
+    height:0;
+
+    border-left:
+        calc(min(340px,86vw)/2)
+        solid transparent;
+
+    border-right:
+        calc(min(340px,86vw)/2)
+        solid transparent;
+
+    border-top:
+        125px
+        solid #fff;
+
+    transform-origin:top center;
+
+    transition:
+        transform 1.25s
+        cubic-bezier(.2,.8,.2,1);
+
+}
+
+
+/* opening */
+
+.envelope.open .envelope-flap{
+
+    transform:
+        rotateX(180deg);
+
+}
+
+.envelope.open .inside-letter{
+
+    transform:
+        translateY(-125px);
+
+}
+
+
+/* seal */
+
+.seal{
+
+    position:absolute;
+
+    z-index:9;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    width:48px;
+    height:48px;
+
+    display:flex;
+
+    align-items:center;
+    justify-content:center;
+
+    border-radius:50%;
+
+    background:#b72a4d;
+
+    border:3px solid #f3a3b5;
+
+    box-shadow:
+        0 0 20px rgba(255,50,100,.5);
+
+    font-size:20px;
+
+    transition:
+        opacity .4s,
+        transform .6s;
+
+}
+
+.envelope.open .seal{
+
+    opacity:0;
+
+    transform:
+        translate(-50%,-50%)
+        scale(1.6);
+
+}
+
+
+/* envelope label */
+
+.envelope-label{
+
+    margin-top:38px;
+
+    color:#dcbcc5;
+
+    font-size:14px;
+
+}
+
+.read-button{
+
+    margin-top:18px;
+
+    padding:14px 29px;
+
+    border:none;
+
+    border-radius:30px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ff527a,
+            #941b40
+        );
+
+    font-size:15px;
+
+    cursor:pointer;
+
+    box-shadow:
+        0 10px 30px rgba(255,30,80,.25);
+
+    animation:
+        buttonAppear .8s ease;
+
+}
+
+@keyframes buttonAppear{
+
+    from{
+        opacity:0;
+        transform:translateY(15px) scale(.9);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+
+}
+
+
+/* =========================================================
+   LETTER
+========================================================= */
 
 .letter-section{
+
     display:none;
-    animation:fadeUp 1s ease;
+
+    animation:
+        letterAppear 1.2s ease;
+
 }
 
 .letter-section.show{
     display:block;
 }
 
-.roll-top,
-.roll-bottom{
-    height:22px;
-    background:linear-gradient(#fffef7,#ded5c5,#fffef7);
-    border-radius:15px;
-    box-shadow:0 5px 12px rgba(0,0,0,.3);
-}
+@keyframes letterAppear{
 
-.letter-paper{
-    background:
-        linear-gradient(rgba(255,255,255,.6),rgba(255,255,255,.6)),
-        repeating-linear-gradient(
-            0deg,
-            #f5ead1 0,
-            #f5ead1 30px,
-            #eadbbd 31px
-        );
-    color:#302329;
-    padding:35px 22px;
-    box-shadow:0 15px 35px rgba(0,0,0,.35);
-    min-height:400px;
-}
-
-.message-counter{
-    text-align:center;
-    color:#9b4b63;
-    font-family:Arial,sans-serif;
-    font-size:12px;
-    letter-spacing:2px;
-    margin-bottom:25px;
-}
-
-.message{
-    display:none;
-    text-align:center;
-    animation:messageIn .9s ease;
-}
-
-.message.active{
-    display:block;
-}
-
-.message p{
-    font-size:clamp(18px,4.7vw,24px);
-    line-height:1.8;
-}
-
-.message.special p{
-    font-weight:bold;
-}
-
-@keyframes messageIn{
-    from{
-        opacity:0;
-        transform:translateY(30px) scale(.97);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0) scale(1);
-    }
-}
-
-/* ==================================================
-   IMAGE CARDS
-================================================== */
-
-.memory-card{
-    margin-top:25px;
-    text-align:center;
-}
-
-.memory-card img{
-    width:min(270px,80%);
-    max-height:300px;
-    object-fit:contain;
-    border-radius:20px;
-    box-shadow:
-        0 12px 35px rgba(0,0,0,.3);
-}
-
-.snoopy{
-    animation:snoopyMove 2.5s ease-in-out infinite;
-}
-
-@keyframes snoopyMove{
-    0%,100%{
-        transform:translateX(-8px) rotate(-2deg);
-    }
-    50%{
-        transform:translateX(8px) rotate(2deg);
-    }
-}
-
-.spidey{
-    animation:spideyBounce 2s ease-in-out infinite;
-}
-
-@keyframes spideyBounce{
-    0%,100%{
-        transform:translateY(0) rotate(-2deg);
-    }
-    50%{
-        transform:translateY(-12px) rotate(2deg);
-    }
-}
-
-/* ==================================================
-   FLOATING 😛
-================================================== */
-
-.tongue{
-    position:fixed;
-    z-index:20;
-    font-size:30px;
-    pointer-events:none;
-    animation:tongueRun 8s linear infinite;
-    opacity:.8;
-}
-
-@keyframes tongueRun{
-    0%{
-        left:-50px;
-        top:75%;
-    }
-    45%{
-        left:105%;
-        top:67%;
-    }
-    50%{
-        left:105%;
-        top:67%;
-    }
-    100%{
-        left:-50px;
-        top:55%;
-    }
-}
-
-/* ==================================================
-   NEXT BUTTON
-================================================== */
-
-.next-area{
-    margin-top:35px;
-    text-align:center;
-}
-
-.next-btn{
-    padding:13px 30px;
-    border:none;
-    border-radius:30px;
-    background:#38121d;
-    border:1px solid #a33b5b;
-    color:#fff;
-    cursor:pointer;
-    font-size:15px;
-    transition:.3s;
-}
-
-.next-btn:hover{
-    background:#641b32;
-    transform:translateY(-2px);
-}
-
-/* ==================================================
-   P.S.
-================================================== */
-
-.ps{
-    margin-top:35px;
-    padding:22px;
-    border-left:3px solid #b33c61;
-    background:rgba(90,20,40,.08);
-    font-style:italic;
-}
-
-/* ==================================================
-   FINAL
-================================================== */
-
-.final{
-    display:none;
-    text-align:center;
-    padding:70px 10px 120px;
-    animation:fadeUp 1.5s ease;
-}
-
-.final.show{
-    display:block;
-}
-
-.final h2{
-    font-size:clamp(30px,8vw,55px);
-    margin-bottom:25px;
-}
-
-.final p{
-    color:#dfc5cc;
-    font-size:20px;
-    line-height:1.8;
-}
-
-/* ==================================================
-   FINAL BOUQUET
-================================================== */
-
-.final-bouquet{
-    width:min(300px,80vw);
-    margin:20px auto 35px;
-    animation:bouquetFloat 3s ease-in-out infinite;
-}
-
-.final-bouquet img{
-    width:100%;
-    max-height:350px;
-    object-fit:contain;
-    filter:drop-shadow(0 15px 30px rgba(255,60,100,.25));
-}
-
-@keyframes bouquetFloat{
-    0%,100%{transform:translateY(0) rotate(-2deg);}
-    50%{transform:translateY(-15px) rotate(2deg);}
-}
-
-/* ==================================================
-   HEART SHOWER
-================================================== */
-
-.heart-shower{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    overflow:hidden;
-    z-index:100;
-}
-
-.shower-heart{
-    position:absolute;
-    top:-60px;
-    font-size:20px;
-    animation:heartFall linear forwards;
-    filter:drop-shadow(0 0 8px rgba(255,80,130,.7));
-}
-
-@keyframes heartFall{
-    0%{
-        transform:translateY(-60px) rotate(0deg) scale(.7);
-        opacity:0;
-    }
-
-    10%{
-        opacity:1;
-    }
-
-    100%{
-        transform:
-            translateY(110vh)
-            translateX(var(--drift))
-            rotate(360deg)
-            scale(1.3);
-        opacity:0;
-    }
-}
-
-/* ==================================================
-   CLICK HEARTS
-================================================== */
-
-.click-heart{
-    position:fixed;
-    pointer-events:none;
-    z-index:200;
-    animation:clickHeart 1s forwards;
-}
-
-@keyframes clickHeart{
-    0%{
-        transform:translate(-50%,-50%) scale(.4);
-        opacity:1;
-    }
-    100%{
-        transform:
-            translate(
-                calc(-50% + var(--x)),
-                calc(-50% + var(--y))
-            )
-            scale(1.5);
-        opacity:0;
-    }
-}
-
-/* ==================================================
-   ANIMATIONS
-================================================== */
-
-@keyframes fadeUp{
     from{
         opacity:0;
         transform:translateY(35px);
@@ -822,253 +1036,1512 @@ button{
 
     to{
         opacity:1;
-        transform:translateY(0);
+        transform:none;
     }
+
 }
 
-/* ==================================================
+
+/* rolled ends */
+
+.roll{
+
+    height:24px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            #fffef5,
+            #d8cbb7,
+            #fffef5
+        );
+
+    box-shadow:
+        0 5px 12px rgba(0,0,0,.35);
+
+}
+
+
+/* paper */
+
+.paper{
+
+    min-height:500px;
+
+    padding:
+        32px
+        20px
+        38px;
+
+    color:#302329;
+
+    background:
+
+        repeating-linear-gradient(
+            0deg,
+            #f5ead1 0px,
+            #f5ead1 31px,
+            #e9d9b9 32px
+        );
+
+    box-shadow:
+        0 15px 40px rgba(0,0,0,.35);
+
+}
+
+
+/* counter */
+
+.counter{
+
+    text-align:center;
+
+    font-family:Arial,sans-serif;
+
+    font-size:11px;
+
+    letter-spacing:3px;
+
+    color:#9c4c64;
+
+    margin-bottom:25px;
+
+}
+
+
+/* messages */
+
+.message{
+
+    display:none;
+
+    text-align:center;
+
+    animation:
+        messageAppear .9s
+        cubic-bezier(.2,.8,.2,1);
+
+}
+
+.message.active{
+    display:block;
+}
+
+.message p{
+
+    font-size:
+        clamp(17px,4.5vw,23px);
+
+    line-height:1.85;
+
+}
+
+@keyframes messageAppear{
+
+    from{
+        opacity:0;
+        transform:
+            translateY(25px)
+            scale(.97);
+        filter:blur(4px);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+        filter:blur(0);
+    }
+
+}
+
+
+/* =========================================================
+   SNOOPY — IMAGE BACKGROUND REMOVAL + RUNNING
+========================================================= */
+
+.snoopy-stage{
+
+    position:relative;
+
+    width:100%;
+
+    height:250px;
+
+    overflow:hidden;
+
+    margin-top:25px;
+
+}
+
+.snoopy-runner{
+
+    position:absolute;
+
+    width:170px;
+
+    height:auto;
+
+    bottom:15px;
+
+    left:-190px;
+
+    object-fit:contain;
+
+    animation:
+        snoopyRun
+        8s
+        linear
+        infinite;
+
+    filter:
+        drop-shadow(
+            0 8px 8px
+            rgba(0,0,0,.25)
+        );
+
+}
+
+@keyframes snoopyRun{
+
+    0%{
+        left:-190px;
+        transform:
+            translateY(0)
+            rotate(-3deg);
+    }
+
+    15%{
+        transform:
+            translateY(-13px)
+            rotate(3deg);
+    }
+
+    30%{
+        transform:
+            translateY(0)
+            rotate(-2deg);
+    }
+
+    45%{
+        transform:
+            translateY(-15px)
+            rotate(3deg);
+    }
+
+    60%{
+        transform:
+            translateY(0)
+            rotate(-2deg);
+    }
+
+    100%{
+        left:105%;
+        transform:
+            translateY(-5px)
+            rotate(2deg);
+    }
+
+}
+
+.snoopy-caption{
+
+    font-size:12px;
+
+    color:#80566a;
+
+    margin-top:-10px;
+
+}
+
+
+/* =========================================================
+   SPIDER-MAN CARD
+========================================================= */
+
+.spidey-card{
+
+    margin-top:30px;
+
+    padding:22px;
+
+    border-radius:20px;
+
+    text-align:center;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(190,25,55,.14),
+            rgba(30,60,130,.12)
+        );
+
+    border:1px solid rgba(190,50,80,.3);
+
+    overflow:hidden;
+
+}
+
+.spidey-card img{
+
+    width:min(260px,80%);
+
+    max-height:300px;
+
+    object-fit:contain;
+
+    animation:
+        spideyFloat
+        2.5s
+        ease-in-out
+        infinite;
+
+    filter:
+        drop-shadow(
+            0 12px 20px
+            rgba(0,0,0,.35)
+        );
+
+}
+
+@keyframes spideyFloat{
+
+    0%,100%{
+        transform:
+            translateY(0)
+            rotate(-2deg);
+    }
+
+    50%{
+        transform:
+            translateY(-12px)
+            rotate(2deg);
+    }
+
+}
+
+
+/* web line behind spidey */
+
+.spider-web-line{
+
+    height:90px;
+
+    width:1px;
+
+    margin:auto;
+
+    background:
+        linear-gradient(
+            white,
+            transparent
+        );
+
+    animation:
+        webSwing 2.5s
+        ease-in-out
+        infinite;
+
+}
+
+@keyframes webSwing{
+
+    0%,100%{
+        transform:rotate(5deg);
+    }
+
+    50%{
+        transform:rotate(-5deg);
+    }
+
+}
+
+
+/* =========================================================
+   😛 RUNNING
+========================================================= */
+
+.tongue-runner{
+
+    position:fixed;
+
+    z-index:50;
+
+    font-size:34px;
+
+    pointer-events:none;
+
+    left:-60px;
+
+    bottom:18vh;
+
+    animation:
+        tongueAcross
+        11s
+        linear
+        infinite;
+
+}
+
+@keyframes tongueAcross{
+
+    0%{
+        left:-60px;
+        transform:rotate(-5deg);
+    }
+
+    45%{
+        left:105%;
+        transform:rotate(7deg);
+    }
+
+    50%{
+        left:105%;
+    }
+
+    100%{
+        left:-60px;
+        transform:rotate(-5deg);
+    }
+
+}
+
+
+/* =========================================================
+   NEXT
+========================================================= */
+
+.next-area{
+
+    margin-top:35px;
+
+    text-align:center;
+
+}
+
+.next-button{
+
+    padding:
+        13px
+        31px;
+
+    border-radius:30px;
+
+    border:1px solid #a53b5c;
+
+    color:white;
+
+    background:#38121e;
+
+    cursor:pointer;
+
+    font-size:15px;
+
+    transition:.3s;
+
+}
+
+.next-button:hover{
+
+    transform:translateY(-3px);
+
+    background:#621b34;
+
+}
+
+.next-note{
+
+    margin-top:12px;
+
+    font-family:Arial,sans-serif;
+
+    font-size:10px;
+
+    letter-spacing:1px;
+
+    color:#80576a;
+
+}
+
+
+/* =========================================================
+   FINAL MESSAGE
+========================================================= */
+
+.final-section{
+
+    display:none;
+
+    text-align:center;
+
+    padding:
+        70px
+        10px
+        100px;
+
+    animation:
+        fadeUp 1.3s ease;
+
+}
+
+.final-section.show{
+    display:block;
+}
+
+.final-section h2{
+
+    font-size:
+        clamp(31px,8vw,58px);
+
+    margin-bottom:14px;
+
+    text-shadow:
+        0 0 20px #ff315d;
+
+}
+
+.final-section p{
+
+    color:#dfc5cc;
+
+    font-size:19px;
+
+    line-height:1.8;
+
+}
+
+
+/* =========================================================
+   CODE-GENERATED BOUQUET
+========================================================= */
+
+.bouquet-area{
+
+    position:relative;
+
+    width:
+        min(360px,90vw);
+
+    height:470px;
+
+    margin:
+        0 auto 35px;
+
+}
+
+
+/* stems */
+
+.stems{
+
+    position:absolute;
+
+    left:50%;
+    bottom:120px;
+
+    width:200px;
+    height:250px;
+
+    transform:
+        translateX(-50%);
+
+}
+
+.stem{
+
+    position:absolute;
+
+    bottom:0;
+
+    left:50%;
+
+    width:5px;
+
+    height:0;
+
+    border-radius:10px;
+
+    background:
+        linear-gradient(
+            to top,
+            #275a31,
+            #5e9b55
+        );
+
+    transform-origin:bottom;
+
+    transition:
+        height 1.2s ease;
+
+}
+
+.bouquet-area.build .stem{
+    height:210px;
+}
+
+.stem:nth-child(1){
+    transform:rotate(-25deg);
+}
+
+.stem:nth-child(2){
+    transform:rotate(-13deg);
+}
+
+.stem:nth-child(3){
+    transform:rotate(0deg);
+}
+
+.stem:nth-child(4){
+    transform:rotate(13deg);
+}
+
+.stem:nth-child(5){
+    transform:rotate(25deg);
+}
+
+.stem:nth-child(6){
+    transform:rotate(-38deg);
+    height:0 !important;
+}
+
+.stem:nth-child(7){
+    transform:rotate(38deg);
+    height:0 !important;
+}
+
+
+/* leaves */
+
+.leaf{
+
+    position:absolute;
+
+    width:35px;
+    height:17px;
+
+    background:#4c8d4f;
+
+    border-radius:
+        100% 0 100% 0;
+
+    opacity:0;
+
+    transform:scale(0);
+
+    transition:
+        1s
+        cubic-bezier(.2,.8,.2,1);
+
+}
+
+.bouquet-area.build .leaf{
+
+    opacity:1;
+
+    transform:scale(1)
+        rotate(var(--rot));
+
+}
+
+.leaf.l1{
+    left:18%;
+    bottom:125px;
+    --rot:-25deg;
+    transition-delay:1.2s;
+}
+
+.leaf.l2{
+    right:18%;
+    bottom:145px;
+    --rot:65deg;
+    transition-delay:1.4s;
+}
+
+.leaf.l3{
+    left:29%;
+    bottom:85px;
+    --rot:-55deg;
+    transition-delay:1.6s;
+}
+
+
+/* flowers */
+
+.flower{
+
+    position:absolute;
+
+    width:76px;
+    height:76px;
+
+    left:50%;
+    top:0;
+
+    transform:
+        translate(-50%,30px)
+        scale(0);
+
+    opacity:0;
+
+    transition:
+        1s
+        cubic-bezier(.2,.9,.25,1);
+
+}
+
+.bouquet-area.build .flower{
+
+    opacity:1;
+
+    transform:
+        translate(-50%,0)
+        scale(1);
+
+}
+
+.flower.f1{
+    left:28%;
+    top:55px;
+    transition-delay:.5s;
+}
+
+.flower.f2{
+    left:50%;
+    top:20px;
+    transition-delay:.8s;
+}
+
+.flower.f3{
+    left:72%;
+    top:55px;
+    transition-delay:1.1s;
+}
+
+.flower.f4{
+    left:39%;
+    top:95px;
+    transition-delay:1.4s;
+}
+
+.flower.f5{
+    left:61%;
+    top:95px;
+    transition-delay:1.7s;
+}
+
+
+/* petals */
+
+.petal{
+
+    position:absolute;
+
+    width:34px;
+    height:45px;
+
+    left:21px;
+    top:15px;
+
+    border-radius:
+        50% 50% 45% 45%;
+
+    transform-origin:
+        50% 100%;
+
+}
+
+.petal:nth-child(1){
+    transform:rotate(0deg) translateY(-17px);
+}
+
+.petal:nth-child(2){
+    transform:rotate(60deg) translateY(-17px);
+}
+
+.petal:nth-child(3){
+    transform:rotate(120deg) translateY(-17px);
+}
+
+.petal:nth-child(4){
+    transform:rotate(180deg) translateY(-17px);
+}
+
+.petal:nth-child(5){
+    transform:rotate(240deg) translateY(-17px);
+}
+
+.petal:nth-child(6){
+    transform:rotate(300deg) translateY(-17px);
+}
+
+.flower:nth-of-type(1) .petal{
+    background:#ff7192;
+}
+
+.flower:nth-of-type(2) .petal{
+    background:#ffd166;
+}
+
+.flower:nth-of-type(3) .petal{
+    background:#ff91bd;
+}
+
+.flower:nth-of-type(4) .petal{
+    background:#b58cff;
+}
+
+.flower:nth-of-type(5) .petal{
+    background:#ffb36b;
+}
+
+
+/* flower centers */
+
+.center-flower{
+
+    position:absolute;
+
+    left:50%;
+    top:50%;
+
+    transform:
+        translate(-50%,-50%);
+
+    width:24px;
+    height:24px;
+
+    border-radius:50%;
+
+    background:#fff0a8;
+
+    box-shadow:
+        0 0 12px rgba(255,210,80,.8);
+
+}
+
+
+/* wrapper */
+
+.wrapper{
+
+    position:absolute;
+
+    left:50%;
+
+    bottom:45px;
+
+    width:230px;
+    height:180px;
+
+    transform:
+        translateX(-50%)
+        scaleY(0);
+
+    transform-origin:bottom;
+
+    opacity:0;
+
+    transition:
+        1s
+        cubic-bezier(.2,.8,.2,1);
+
+    background:
+        linear-gradient(
+            135deg,
+            #f1c5d2,
+            #fff0f4,
+            #e4b3c4
+        );
+
+    clip-path:
+        polygon(
+            12% 0,
+            88% 0,
+            68% 100%,
+            32% 100%
+        );
+
+    box-shadow:
+        0 10px 20px rgba(0,0,0,.2);
+
+}
+
+.bouquet-area.build .wrapper{
+
+    opacity:1;
+
+    transform:
+        translateX(-50%)
+        scaleY(1);
+
+    transition-delay:2s;
+
+}
+
+
+/* wrapper stripes */
+
+.wrapper:after{
+
+    content:"";
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+        repeating-linear-gradient(
+            135deg,
+            transparent 0 14px,
+            rgba(255,255,255,.3) 15px 18px
+        );
+
+}
+
+
+/* ribbon */
+
+.ribbon{
+
+    position:absolute;
+
+    z-index:10;
+
+    left:50%;
+
+    bottom:75px;
+
+    transform:
+        translateX(-50%)
+        scale(0);
+
+    width:55px;
+    height:35px;
+
+    opacity:0;
+
+    transition:
+        .8s
+        cubic-bezier(.2,.9,.25,1);
+
+}
+
+.bouquet-area.build .ribbon{
+
+    opacity:1;
+
+    transform:
+        translateX(-50%)
+        scale(1);
+
+    transition-delay:3s;
+
+}
+
+.ribbon:before,
+.ribbon:after{
+
+    content:"";
+
+    position:absolute;
+
+    width:38px;
+    height:30px;
+
+    background:#b82d53;
+
+    top:0;
+
+}
+
+.ribbon:before{
+
+    right:30px;
+
+    border-radius:
+        50% 10% 50% 50%;
+
+    transform:rotate(-20deg);
+
+}
+
+.ribbon:after{
+
+    left:30px;
+
+    border-radius:
+        10% 50% 50% 50%;
+
+    transform:rotate(20deg);
+
+}
+
+.ribbon-knot{
+
+    position:absolute;
+
+    left:50%;
+    top:5px;
+
+    transform:
+        translateX(-50%);
+
+    width:25px;
+    height:25px;
+
+    border-radius:50%;
+
+    background:#8e1839;
+
+}
+
+
+/* bouquet text */
+
+.bouquet-text{
+
+    position:absolute;
+
+    left:0;
+    right:0;
+
+    bottom:0;
+
+    text-align:center;
+
+    opacity:0;
+
+    transform:translateY(15px);
+
+    transition:
+        1s ease;
+
+    font-size:19px;
+
+    color:#ffd5df;
+
+}
+
+.bouquet-area.build .bouquet-text{
+
+    opacity:1;
+
+    transform:none;
+
+    transition-delay:3.8s;
+
+}
+
+
+/* =========================================================
+   HEART SHOWER
+========================================================= */
+
+.heart-shower{
+
+    position:fixed;
+
+    inset:0;
+
+    z-index:999;
+
+    pointer-events:none;
+
+    overflow:hidden;
+
+}
+
+.shower-heart{
+
+    position:absolute;
+
+    top:-60px;
+
+    animation:
+        heartFall
+        linear
+        forwards;
+
+    filter:
+        drop-shadow(
+            0 0 8px
+            rgba(255,60,110,.75)
+        );
+
+}
+
+@keyframes heartFall{
+
+    0%{
+
+        transform:
+            translateY(-60px)
+            translateX(0)
+            rotate(0deg)
+            scale(.5);
+
+        opacity:0;
+
+    }
+
+    10%{
+        opacity:1;
+    }
+
+    100%{
+
+        transform:
+            translateY(110vh)
+            translateX(var(--drift))
+            rotate(500deg)
+            scale(1.25);
+
+        opacity:0;
+
+    }
+
+}
+
+
+/* =========================================================
+   CLICK HEARTS
+========================================================= */
+
+.click-heart{
+
+    position:fixed;
+
+    z-index:2000;
+
+    pointer-events:none;
+
+    animation:
+        clickHeart
+        1s
+        forwards;
+
+}
+
+@keyframes clickHeart{
+
+    0%{
+
+        transform:
+            translate(-50%,-50%)
+            scale(.4);
+
+        opacity:1;
+
+    }
+
+    100%{
+
+        transform:
+            translate(
+                calc(-50% + var(--x)),
+                calc(-50% + var(--y))
+            )
+            scale(1.5);
+
+        opacity:0;
+
+    }
+
+}
+
+
+/* =========================================================
+   BACKGROUND HEARTS
+========================================================= */
+
+.background-heart{
+
+    position:fixed;
+
+    z-index:1;
+
+    bottom:-40px;
+
+    pointer-events:none;
+
+    color:#ff5b80;
+
+    animation:
+        backgroundFloat
+        linear
+        forwards;
+
+    opacity:.7;
+
+}
+
+@keyframes backgroundFloat{
+
+    0%{
+        transform:
+            translateY(0)
+            scale(.6);
+        opacity:0;
+    }
+
+    15%{
+        opacity:.8;
+    }
+
+    100%{
+        transform:
+            translateY(-115vh)
+            translateX(var(--drift))
+            scale(1.2);
+        opacity:0;
+    }
+
+}
+
+
+/* =========================================================
+   GENERAL ANIMATION
+========================================================= */
+
+@keyframes fadeUp{
+
+    from{
+        opacity:0;
+        transform:translateY(30px);
+    }
+
+    to{
+        opacity:1;
+        transform:none;
+    }
+
+}
+
+
+/* =========================================================
    MOBILE
-================================================== */
+========================================================= */
 
-@media(max-width:500px){
+@media(max-width:550px){
 
-    .main{
-        padding-top:45px;
+    .password-card{
+        padding:30px 20px;
+    }
+
+    .birthday-word{
+        font-size:
+            clamp(30px,9vw,52px);
     }
 
     .envelope{
         height:190px;
     }
 
-    .env-left{
-        border-right-width:150px;
-        border-bottom-width:95px;
+    .envelope-hearts{
+        width:330px;
     }
 
-    .env-right{
-        border-left-width:150px;
-        border-bottom-width:95px;
-    }
-
-    .env-flap{
-        border-left-width:150px;
-        border-right-width:150px;
-        border-top-width:100px;
-    }
-
-    .letter-preview{
-        height:145px;
-    }
-
-    .letter-paper{
-        padding:30px 16px;
+    .paper{
+        padding:
+            28px
+            15px
+            35px;
     }
 
     .message p{
-        line-height:1.75;
+        font-size:17px;
+        line-height:1.8;
     }
+
+    .snoopy-stage{
+        height:210px;
+    }
+
+    .snoopy-runner{
+        width:145px;
+    }
+
+    .bouquet-area{
+        transform:scale(.88);
+        transform-origin:top center;
+        margin-bottom:-50px;
+    }
+
 }
 
 </style>
 </head>
 
+
 <body>
 
-<!-- ==================================================
-     PASSWORD SCREEN
-================================================== -->
 
-<div class="web-screen" id="passwordScreen">
+<!-- =========================================================
+     PASSWORD
+========================================================= -->
 
-    <div class="web"></div>
+<div
+    class="password-screen"
+    id="passwordScreen">
 
-    <div class="web-center">
+    <div class="giant-web"></div>
 
-        <div style="font-size:45px;margin-bottom:12px;">🕷️</div>
+    <div class="password-card">
 
-        <h1>Classified Message</h1>
+        <div class="password-spider">
+            🕷️
+        </div>
+
+        <h1>
+            CLASSIFIED
+        </h1>
 
         <p>
-            A little something is waiting behind the web...
+            Something is waiting behind this web...
+            <br>
+            Only one person gets to open it.
         </p>
 
         <input
             id="passwordInput"
-            class="password-box"
+            class="password-input"
             type="password"
-            placeholder="Enter passcode"
+            placeholder="SECRET PASSCODE"
+            autocomplete="off"
         >
 
         <button
-            class="unlock-btn"
+            class="unlock-button"
             onclick="unlockWeb()">
-            Enter the Web 🕷️
+
+            🕸️ Enter the Web
+
         </button>
 
-        <div class="error" id="passwordError"></div>
+        <div
+            id="passwordError"
+            class="password-error">
+        </div>
 
     </div>
 
 </div>
 
 
-<!-- ==================================================
+<!-- =========================================================
      CURTAINS
-================================================== -->
+========================================================= -->
 
-<div class="curtains" id="curtains">
+<div
+    class="curtains"
+    id="curtains">
 
     <div class="curtain left"></div>
+
     <div class="curtain right"></div>
 
 </div>
 
 
-<!-- ==================================================
-     BIRTHDAY HEART INTRO
-================================================== -->
+<!-- =========================================================
+     HEART BIRTHDAY INTRO
+========================================================= -->
 
-<div class="birthday-intro hidden" id="birthdayIntro">
+<div
+    class="birthday-intro"
+    id="birthdayIntro">
 
-    <div class="heart-particles" id="heartParticles"></div>
+    <canvas
+        class="heart-canvas"
+        id="heartCanvas">
+    </canvas>
 
-    <div class="birthday-text" id="birthdayText">
 
-        <span>H</span>
-        <span>A</span>
-        <span>P</span>
-        <span>P</span>
-        <span>Y</span>
-        <span> </span>
-        <span>B</span>
-        <span>I</span>
-        <span>R</span>
-        <span>T</span>
-        <span>H</span>
-        <span>D</span>
-        <span>A</span>
-        <span>Y</span>
+    <div
+        class="birthday-word"
+        id="birthdayWord">
+
+        <!-- FIRST LINE -->
+
+        <div class="birthday-line">
+
+            <span>H</span>
+            <span>A</span>
+            <span>P</span>
+            <span>P</span>
+            <span>Y</span>
+
+        </div>
+
+
+        <!-- SECOND LINE -->
+
+        <div class="birthday-line second">
+
+            <span>B</span>
+            <span>I</span>
+            <span>R</span>
+            <span>T</span>
+            <span>H</span>
+            <span>D</span>
+            <span>A</span>
+            <span>Y</span>
+
+        </div>
 
     </div>
 
 </div>
 
 
-<!-- ==================================================
-     MAIN WEBSITE
-================================================== -->
+<!-- =========================================================
+     MAIN
+========================================================= -->
 
 <main class="main">
 
 <div class="content">
 
-    <section class="title-card">
 
-        <div class="small-title">
-            Classified message
+    <!-- =====================================================
+         TITLE
+    ===================================================== -->
+
+    <section class="title">
+
+        <div class="classified">
+            CLASSIFIED MESSAGE
         </div>
 
-        <div style="font-size:32px;margin-top:12px;">
+        <div class="title-spider">
             🕷️
         </div>
 
         <h1>
-            A little something...
+            For You.
         </h1>
 
         <p>
-            For You.
+            Because some things are easier to write than to say.
         </p>
 
     </section>
 
 
-    <!-- ==================================================
+    <!-- =====================================================
          ENVELOPE
-    ================================================== -->
+    ===================================================== -->
 
-    <section class="envelope-area" id="envelopeArea">
+    <section
+        class="envelope-area"
+        id="envelopeArea">
 
-        <div class="envelope" id="envelope">
 
-            <div class="envelope-hearts">
+        <div class="envelope-hearts">
 
-                <span class="eheart">♡</span>
-                <span class="eheart">♥</span>
-                <span class="eheart">♡</span>
-                <span class="eheart">♥</span>
-                <span class="eheart">♡</span>
+            <span class="envelope-heart">♡</span>
+            <span class="envelope-heart">♥</span>
+            <span class="envelope-heart">♡</span>
+            <span class="envelope-heart">💗</span>
+            <span class="envelope-heart">♥</span>
 
-            </div>
+        </div>
 
-            <div class="letter-preview">
 
-                <h3>For you...</h3>
+        <div
+            class="envelope"
+            id="envelope">
+
+
+            <div class="inside-letter">
+
+                <h3>
+                    A little something...
+                </h3>
 
                 <p>
-                    Some things are better written
-                    than said.
+                    Okay... there is actually something
+                    inside this.
+                    <br><br>
+                    Don't pretend you're not curious. 👀
                 </p>
 
             </div>
 
-            <div class="env-body"></div>
 
-            <div class="env-left"></div>
-            <div class="env-right"></div>
+            <div class="envelope-body"></div>
 
-            <div class="env-flap"></div>
+
+            <div class="front-fold"></div>
+
+
+            <div class="envelope-flap"></div>
+
+
+            <div class="seal">
+                ❤️
+            </div>
 
         </div>
 
 
-        <div class="open-envelope-text">
-            Tap the envelope 💌
+        <div class="envelope-label">
+            Tap the envelope to open it 💌
         </div>
+
 
         <button
-            class="read-btn hidden"
-            id="readBtn"
-            onclick="startLetter()">
-            Yes, read it 💌
+            class="read-button hidden"
+            id="readButton"
+            onclick="startReading()">
+
+            Do you want to read that message? 💌
+
         </button>
 
     </section>
 
 
-    <!-- ==================================================
+    <!-- =====================================================
          LETTER
-    ================================================== -->
+    ===================================================== -->
 
     <section
         class="letter-section"
         id="letterSection">
 
-        <div class="roll-top"></div>
 
-        <div class="letter-paper">
+        <div class="roll"></div>
+
+
+        <div class="paper">
+
 
             <div
-                class="message-counter"
-                id="messageCounter">
-                MESSAGE 1
+                class="counter"
+                id="counter">
+
+                MESSAGE 1 / 16
+
             </div>
 
 
-            <!-- MESSAGE 1 -->
+            <!-- =================================================
+                 1
+            ================================================= -->
 
             <div class="message active">
 
                 <p>
-                    Okay... I don't really know how to begin this
-                    without making it sound either too dramatic
-                    or way too simple.
+                    Okay... I don't really know how to begin this without making it sound either too dramatic or way too simple.
                 </p>
 
             </div>
 
 
-            <!-- MESSAGE 2 -->
+            <!-- =================================================
+                 2
+            ================================================= -->
 
             <div class="message">
 
@@ -1079,248 +2552,431 @@ button{
             </div>
 
 
-            <!-- MESSAGE 3 -->
+            <!-- =================================================
+                 3
+            ================================================= -->
 
             <div class="message">
 
                 <p>
-                    Before I start I tell you I have never ever
-                    typed this long for someone so better appreciate
-                    or main ghar ake tera muh tod dugi 🙂‍↕️.
+                    Before I start I tell you I have never ever typed this long for someone so better appreciate or main ghar ake tera muh tod dugi 🙂‍↕️.
                 </p>
 
             </div>
 
 
-            <!-- MESSAGE 4 -->
+            <!-- =================================================
+                 4
+            ================================================= -->
 
             <div class="message">
 
                 <p>
-                    Forever grateful—not to you, but to myself,
-                    because I was the one who sent you that request
-                    that day.
+                    Forever grateful—not to you, but to myself, because I was the one who sent you that request that day.
                 </p>
 
             </div>
 
 
-            <!-- MESSAGE 5 -->
+            <!-- =================================================
+                 5
+            ================================================= -->
 
             <div class="message">
 
                 <p>
-                    You came from nowhere but I would like to inform
-                    you that you have now become a part of my life
-                    I would like to keep always.
+                    You came from nowhere but I would like to inform you that you have now become a part of my life I would like to keep always.
                 </p>
 
             </div>
 
 
-            <!-- MESSAGE 6 -->
+            <!-- =================================================
+                 6
+            ================================================= -->
 
             <div class="message">
 
                 <p>
-                    Well I may be not knowing much about you
-                    but it doesn't matter.
+                    Well I may be not knowing much about you but it doesn't matter.
                 </p>
 
             </div>
 
 
-            <!-- MESSAGE 7 -->
+            <!-- =================================================
+                 7
+            ================================================= -->
 
             <div class="message">
 
                 <p>
-                    There are some people who somehow become a part
-                    of your days without you even noticing when
-                    it happened.
+                    There are some people who somehow become a part of your days without you even noticing when it happened.
                 </p>
 
             </div>
 
 
-            <!-- MESSAGE 8 -->
+            <!-- =================================================
+                 8
+            ================================================= -->
 
             <div class="message">
 
                 <p>
-                    And then one day you realise that their presence
-                    means a lot more than you expected.
+                    And then one day you realise that their presence means a lot more than you expected.
                 </p>
 
             </div>
 
 
-            <!-- MESSAGE 9 -->
+            <!-- =================================================
+                 9
+            ================================================= -->
 
             <div class="message">
 
                 <p>
-                    Allah kare tujhe jo bhi cheez chahiye Allah
-                    tere haq main use likde...
+                    Allah kare tujhe jo bhi cheez chahiye Allah tere haq main use likde...
                 </p>
 
             </div>
 
 
-            <!-- MESSAGE 10 -->
+            <!-- =================================================
+                 10
+            ================================================= -->
 
             <div class="message">
 
                 <p>
-                    Allah tala tujhe itni khushi de itni khushiiiii
-                    dee... tujhe kamyabi de...
+                    Allah tala tujhe itni khushi de itni khushiiiii dee... tujhe kamyabi de...
                 </p>
 
             </div>
 
 
-            <!-- MESSAGE 11 -->
+            <!-- =================================================
+                 11 — SHAWARMA + SNOOPY
+            ================================================= -->
 
-            <div class="message special">
+            <div class="message">
 
                 <p>
                     Taki badme tu mujhe shawarma khila sake 😛✌️
                 </p>
 
-                <div class="memory-card">
+
+                <div class="snoopy-stage">
 
                     <img
+                        id="snoopyRunner"
+                        class="snoopy-runner"
                         src="snoopy.jpg"
-                        class="snoopy"
-                        alt="Cute birthday picture">
+                        alt="Cute Snoopy">
 
+                </div>
+
+
+                <div class="snoopy-caption">
+                    okay now run away before I ask for that shawarma 😛
                 </div>
 
             </div>
 
 
-            <!-- MESSAGE 12 -->
+            <!-- =================================================
+                 12
+            ================================================= -->
 
             <div class="message">
 
                 <p>
-                    I hope you always remember that you are
-                    appreciated, remembered, and genuinely cared about.
+                    I hope you always remember that you are appreciated, remembered, and genuinely cared about.
                 </p>
 
             </div>
 
 
-            <!-- MESSAGE 13 -->
+            <!-- =================================================
+                 13 — SPIDER-MAN
+            ================================================= -->
 
             <div class="message">
 
                 <p>
-                    And yes... You might have your Spider-Man obsession,
-                    but even Spider-Man needs someone in his corner
-                    sometimes. 🕷️
+                    And yes... You might have your Spider-Man obsession, but even Spider-Man needs someone in his corner sometimes. 🕷️
                 </p>
 
-                <div class="memory-card">
+
+                <div class="spidey-card">
+
+                    <div class="spider-web-line"></div>
+
 
                     <img
                         src="spiderman.jpg"
-                        class="spidey"
-                        alt="Cute Spider-Man birthday picture">
+                        alt="Cute Spider-Man">
+
+                    <div
+                        style="
+                            margin-top:15px;
+                            color:#8e5266;
+                            font-size:12px;
+                            letter-spacing:1px;
+                        ">
+
+                        your friendly neighbourhood obsession 🕷️
+
+                    </div>
 
                 </div>
 
             </div>
 
 
-            <!-- MESSAGE 14 -->
+            <!-- =================================================
+                 14
+            ================================================= -->
 
             <div class="message">
 
                 <p>
-                    That's all. Or maybe... that's not all.
-                    But I'll leave the rest between these lines.
+                    That's all. Or maybe... that's not all. But I'll leave the rest between these lines.
                 </p>
 
             </div>
 
 
-            <!-- PS -->
+            <!-- =================================================
+                 15 — PS
+            ================================================= -->
 
             <div class="message">
 
-                <div class="ps">
+                <p
+                    style="
+                        font-style:italic;
+                        color:#704557;
+                    ">
 
-                    P.S. — Don't let this website make you too
-                    emotional. I still expect that shawarma. 😛✌️
+                    P.S. — Don't let this website make you too emotional. I still expect that shawarma. 😛✌️
 
-                </div>
+                </p>
 
             </div>
 
 
-            <!-- FINAL MESSAGE -->
+            <!-- =================================================
+                 16 — FINAL
+            ================================================= -->
 
             <div class="message">
 
                 <p>
+
                     Here's to another year of you being you.
                     Stay happy, stay successful, and don't forget
                     the shawarma promise. 🕷️
+
                 </p>
 
             </div>
 
+
+            <!-- =================================================
+                 NEXT
+            ================================================= -->
 
             <div class="next-area">
 
                 <button
-                    class="next-btn"
-                    id="nextBtn"
+                    class="next-button"
+                    id="nextButton"
                     onclick="nextMessage()">
+
                     Next 💗
+
                 </button>
+
+                <div class="next-note">
+
+                    Take your time. Nothing moves until you tap.
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="roll"></div>
+
+    </section>
+
+
+    <!-- =====================================================
+         FINAL BOUQUET
+    ===================================================== -->
+
+    <section
+        class="final-section"
+        id="finalSection">
+
+
+        <div
+            class="bouquet-area"
+            id="bouquet">
+
+
+            <!-- STEMS -->
+
+            <div class="stems">
+
+                <div class="stem"></div>
+                <div class="stem"></div>
+                <div class="stem"></div>
+                <div class="stem"></div>
+                <div class="stem"></div>
+                <div class="stem"></div>
+                <div class="stem"></div>
+
+            </div>
+
+
+            <!-- LEAVES -->
+
+            <div class="leaf l1"></div>
+            <div class="leaf l2"></div>
+            <div class="leaf l3"></div>
+
+
+            <!-- FLOWER 1 -->
+
+            <div class="flower f1">
+
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+
+                <div class="center-flower"></div>
+
+            </div>
+
+
+            <!-- FLOWER 2 -->
+
+            <div class="flower f2">
+
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+
+                <div class="center-flower"></div>
+
+            </div>
+
+
+            <!-- FLOWER 3 -->
+
+            <div class="flower f3">
+
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+
+                <div class="center-flower"></div>
+
+            </div>
+
+
+            <!-- FLOWER 4 -->
+
+            <div class="flower f4">
+
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+
+                <div class="center-flower"></div>
+
+            </div>
+
+
+            <!-- FLOWER 5 -->
+
+            <div class="flower f5">
+
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+                <div class="petal"></div>
+
+                <div class="center-flower"></div>
+
+            </div>
+
+
+            <!-- WRAPPER -->
+
+            <div class="wrapper"></div>
+
+
+            <!-- RIBBON -->
+
+            <div class="ribbon">
+
+                <div class="ribbon-knot"></div>
+
+            </div>
+
+
+            <!-- TEXT -->
+
+            <div class="bouquet-text">
+
+                Here is a bouquet for you. 💐
 
             </div>
 
         </div>
 
-        <div class="roll-bottom"></div>
-
-    </section>
-
-
-    <!-- ==================================================
-         FINAL
-    ================================================== -->
-
-    <section
-        class="final"
-        id="finalSection">
-
-        <div class="final-bouquet">
-
-            <img
-                src="spiderman.jpg"
-                alt="Birthday bouquet">
-
-        </div>
 
         <h2>
-            🕷️✨ HAPPY BIRTHDAY ✨🕷️
+            🕷️ HAPPY BIRTHDAY 🕷️
         </h2>
 
-        <p>
-            And yes...
-        </p>
 
         <p>
-            The shawarma promise is still legally binding. 😛✌️
+            Here's to another year of you being you.
         </p>
+
+
+        <p style="margin-top:12px;">
+            Stay happy, stay successful,
+            and don't forget the shawarma promise. 😛✌️
+        </p>
+
 
         <p style="margin-top:25px;">
-            Have the happiest year ahead. 💗
+            Have the happiest year ahead. ❤️
         </p>
+
 
     </section>
 
@@ -1329,18 +2985,18 @@ button{
 </main>
 
 
-<!-- ==================================================
-     MOVING 😛
-================================================== -->
+<!-- =========================================================
+     😛
+========================================================= -->
 
-<div class="tongue">
+<div class="tongue-runner">
     😛
 </div>
 
 
-<!-- ==================================================
+<!-- =========================================================
      HEART SHOWER
-================================================== -->
+========================================================= -->
 
 <div
     class="heart-shower"
@@ -1348,9 +3004,9 @@ button{
 </div>
 
 
-<!-- ==================================================
+<!-- =========================================================
      MUSIC
-================================================== -->
+========================================================= -->
 
 <audio
     id="birthdayMusic"
@@ -1362,9 +3018,10 @@ button{
 
 <script>
 
-/* ==================================================
+
+/* =========================================================
    PASSWORD
-================================================== */
+========================================================= */
 
 const SECRET_PASSWORD = "Dumbo";
 
@@ -1372,484 +3029,1193 @@ const SECRET_PASSWORD = "Dumbo";
 function unlockWeb(){
 
     const input =
-        document.getElementById("passwordInput").value;
-
-    const error =
-        document.getElementById("passwordError");
+        document.getElementById("passwordInput");
 
     const screen =
         document.getElementById("passwordScreen");
 
-    if(input === SECRET_PASSWORD){
+    const error =
+        document.getElementById("passwordError");
 
-        error.textContent = "";
 
-        screen.classList.add("open");
+    if(input.value === SECRET_PASSWORD){
+
+        error.textContent =
+            "ACCESS GRANTED 🕷️";
+
+
+        screen.classList.add(
+            "web-opening"
+        );
+
 
         setTimeout(() => {
 
-            screen.classList.add("hidden");
+            screen.classList.add(
+                "hide"
+            );
 
             openCurtains();
 
-        },2500);
+        },2200);
+
 
     }else{
 
         error.textContent =
-            "Hmm... wrong passcode 🕷️";
+            "Wrong passcode... nice try 🕷️";
+
+        input.value="";
+
+        input.animate(
+
+            [
+                {transform:"translateX(-8px)"},
+                {transform:"translateX(8px)"},
+                {transform:"translateX(-5px)"},
+                {transform:"translateX(5px)"},
+                {transform:"translateX(0)"}
+            ],
+
+            {
+                duration:400
+            }
+
+        );
 
     }
 
 }
 
 
-/* ENTER KEY */
+/* Enter key */
 
 document
-.getElementById("passwordInput")
-.addEventListener("keydown",function(e){
+    .getElementById("passwordInput")
+    .addEventListener(
+        "keydown",
+        function(e){
 
-    if(e.key === "Enter"){
-        unlockWeb();
-    }
+            if(e.key === "Enter"){
+                unlockWeb();
+            }
 
-});
+        }
+    );
 
 
-/* ==================================================
+/* =========================================================
    CURTAINS
-================================================== */
+========================================================= */
 
 function openCurtains(){
 
     const curtains =
         document.getElementById("curtains");
 
-    curtains.classList.add("open");
 
     setTimeout(() => {
 
-        curtains.classList.add("hidden");
+        curtains.classList.add(
+            "open"
+        );
 
-        startBirthdayHeart();
+    },300);
 
-    },2700);
+
+    setTimeout(() => {
+
+        curtains.classList.add(
+            "hidden"
+        );
+
+
+        startHeartFormation();
+
+    },3300);
 
 }
 
 
-/* ==================================================
-   BIRTHDAY HEART
-================================================== */
+/* =========================================================
+   HEART FORMATION
+========================================================= */
 
-function startBirthdayHeart(){
+const canvas =
+    document.getElementById("heartCanvas");
+
+const ctx =
+    canvas.getContext("2d");
+
+
+let particles = [];
+
+
+function resizeCanvas(){
+
+    canvas.width =
+        window.innerWidth;
+
+    canvas.height =
+        window.innerHeight;
+
+}
+
+
+window.addEventListener(
+    "resize",
+    resizeCanvas
+);
+
+
+function heartPoint(t){
+
+    const scale =
+        Math.min(
+            canvas.width,
+            canvas.height
+        ) * .020;
+
+
+    const x =
+        16 *
+        Math.pow(
+            Math.sin(t),
+            3
+        );
+
+
+    const y =
+        -(
+            13 * Math.cos(t)
+            -
+            5 * Math.cos(2*t)
+            -
+            2 * Math.cos(3*t)
+            -
+            Math.cos(4*t)
+        );
+
+
+    return {
+
+        x:
+            canvas.width/2
+            +
+            x*scale,
+
+        y:
+            canvas.height/2
+            +
+            y*scale
+
+    };
+
+}
+
+
+/*
+   This is the important part:
+   particles start randomly around the screen
+   and fly toward the mathematical heart curve.
+*/
+
+function startHeartFormation(){
 
     const intro =
-        document.getElementById("birthdayIntro");
+        document.getElementById(
+            "birthdayIntro"
+        );
 
-    const particles =
-        document.getElementById("heartParticles");
+    intro.classList.add("show");
 
-    intro.classList.remove("hidden");
 
-    const total = 150;
+    resizeCanvas();
 
-    for(let i=0;i<total;i++){
 
-        const p =
-            document.createElement("div");
+    particles=[];
 
-        p.className="particle";
+
+    const amount = 360;
+
+
+    for(let i=0;i<amount;i++){
 
         const angle =
             Math.random()*Math.PI*2;
 
-        const radius =
-            180 + Math.random()*120;
+        const distance =
+            Math.max(
+                canvas.width,
+                canvas.height
+            ) * (.35 + Math.random()*.65);
 
-        const sx =
-            Math.cos(angle)*radius;
 
-        const sy =
-            Math.sin(angle)*radius;
+        const startX =
+            canvas.width/2
+            +
+            Math.cos(angle)*distance;
+
+
+        const startY =
+            canvas.height/2
+            +
+            Math.sin(angle)*distance;
+
 
         const t =
             Math.random()*Math.PI*2;
 
-        /*
-          Parametric heart shape
-        */
 
-        const x =
-            16*Math.pow(Math.sin(t),3);
+        const target =
+            heartPoint(t);
 
-        const y =
-            -(
-                13*Math.cos(t)
-                -5*Math.cos(2*t)
-                -2*Math.cos(3*t)
-                -Math.cos(4*t)
-            );
 
-        const scale = 10;
+        particles.push({
 
-        p.style.setProperty(
-            "--sx",
-            sx+"px"
-        );
+            x:startX,
 
-        p.style.setProperty(
-            "--sy",
-            sy+"px"
-        );
+            y:startY,
 
-        p.style.setProperty(
-            "--tx",
-            (x*scale)+"px"
-        );
+            tx:target.x,
 
-        p.style.setProperty(
-            "--ty",
-            (y*scale)+"px"
-        );
+            ty:target.y,
 
-        p.style.left="50%";
-        p.style.top="50%";
+            size:
+                Math.random()*2.5+1,
 
-        p.style.animationDelay =
-            (Math.random()*1.2)+"s";
+            delay:
+                Math.random()*1800,
 
-        particles.appendChild(p);
+            speed:
+                1800+
+                Math.random()*1200,
+
+            sparkle:
+                Math.random()*Math.PI*2
+
+        });
 
     }
 
 
+    const start =
+        performance.now();
+
+
+    function animate(now){
+
+        ctx.clearRect(
+            0,
+            0,
+            canvas.width,
+            canvas.height
+        );
+
+
+        const elapsed =
+            now-start;
+
+
+        particles.forEach(p => {
+
+            const local =
+                Math.max(
+                    0,
+                    elapsed-p.delay
+                );
+
+
+            const progress =
+                Math.min(
+                    local/p.speed,
+                    1
+                );
+
+
+            const ease =
+                1-
+                Math.pow(
+                    1-progress,
+                    3
+                );
+
+
+            const wobble =
+                Math.sin(
+                    p.sparkle+
+                    elapsed*.01
+                )*2;
+
+
+            const x =
+                p.x+
+                (p.tx-p.x)*ease+
+                wobble;
+
+
+            const y =
+                p.y+
+                (p.ty-p.y)*ease;
+
+
+            const alpha =
+                Math.min(
+                    progress*2,
+                    1
+                );
+
+
+            ctx.beginPath();
+
+
+            ctx.arc(
+                x,
+                y,
+                p.size,
+                0,
+                Math.PI*2
+            );
+
+
+            ctx.fillStyle =
+                `rgba(
+                    255,
+                    ${70+Math.random()*100},
+                    ${130+Math.random()*100},
+                    ${alpha}
+                )`;
+
+
+            ctx.shadowBlur =
+                12;
+
+
+            ctx.shadowColor =
+                "#ff3970";
+
+
+            ctx.fill();
+
+
+            /*
+              extra tiny sparkle
+            */
+
+            if(
+                Math.random()<.04 &&
+                progress>.7
+            ){
+
+                ctx.fillStyle =
+                    "rgba(255,255,255,.9)";
+
+                ctx.fillRect(
+                    x-1,
+                    y-1,
+                    2,
+                    2
+                );
+
+            }
+
+        });
+
+
+        if(elapsed < 5000){
+
+            requestAnimationFrame(
+                animate
+            );
+
+        }
+
+    }
+
+
+    requestAnimationFrame(
+        animate
+    );
+
+
+    /*
+       HAPPY appears after the heart is mostly formed.
+    */
+
     setTimeout(() => {
 
         document
-        .getElementById("birthdayText")
-        .classList.add("show");
+            .getElementById("birthdayWord")
+            .classList.add("show");
 
-    },3000);
+    },4300);
 
+
+    /*
+       Let the birthday moment breathe.
+    */
 
     setTimeout(() => {
 
         intro.classList.add("fade");
 
-    },6000);
+    },7600);
 
 
     setTimeout(() => {
 
         intro.classList.add("hidden");
 
-    },7500);
+    },9000);
 
 }
 
 
-/* ==================================================
+/* =========================================================
    ENVELOPE
-================================================== */
+========================================================= */
 
 const envelope =
-    document.getElementById("envelope");
+    document.getElementById(
+        "envelope"
+    );
 
-const readBtn =
-    document.getElementById("readBtn");
+
+envelope.addEventListener(
+    "click",
+    function(){
+
+        if(
+            envelope.classList.contains(
+                "open"
+            )
+        ){
+            return;
+        }
 
 
-envelope.addEventListener("click",function(){
+        envelope.classList.add(
+            "open"
+        );
 
-    if(!envelope.classList.contains("open")){
-
-        envelope.classList.add("open");
 
         setTimeout(() => {
 
-            readBtn.classList.remove("hidden");
+            document
+                .getElementById(
+                    "readButton"
+                )
+                .classList.remove(
+                    "hidden"
+                );
 
-        },1200);
+        },1500);
 
     }
-
-});
-
-
-/* ==================================================
-   START LETTER
-================================================== */
-
-function startLetter(){
-
-    document
-    .getElementById("envelopeArea")
-    .style.display="none";
-
-    document
-    .getElementById("letterSection")
-    .classList.add("show");
-
-    /*
-      Music begins only after a real user tap,
-      which works better on mobile browsers.
-    */
-
-    const music =
-        document.getElementById("birthdayMusic");
-
-    music.volume=.55;
-
-    music.play().catch(() => {
-        console.log("Music waiting for browser permission.");
-    });
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-}
+);
 
 
-/* ==================================================
+/* =========================================================
    MESSAGE SYSTEM
-================================================== */
+========================================================= */
 
 const messages =
-    document.querySelectorAll(".message");
+    document.querySelectorAll(
+        ".message"
+    );
+
 
 let currentMessage = 0;
 
 
-function showMessage(index){
-
-    messages.forEach((msg,i)=>{
-
-        msg.classList.toggle(
-            "active",
-            i === index
-        );
-
-    });
+function updateCounter(){
 
     document
-    .getElementById("messageCounter")
-    .textContent =
-        "MESSAGE " +
-        (index+1) +
-        " / " +
+        .getElementById("counter")
+        .textContent =
+        "MESSAGE "
+        +
+        (currentMessage+1)
+        +
+        " / "
+        +
         messages.length;
 
 }
 
 
-/*
-   IMPORTANT:
-   Messages DO NOT automatically move.
-   User has to press Next.
-*/
+/* =========================================================
+   START READING
+========================================================= */
+
+function startReading(){
+
+    document
+        .getElementById(
+            "envelopeArea"
+        )
+        .style.display="none";
+
+
+    document
+        .getElementById(
+            "letterSection"
+        )
+        .classList.add(
+            "show"
+        );
+
+
+    /*
+       Start music from user tap.
+       This is important for mobile browsers.
+    */
+
+    const music =
+        document.getElementById(
+            "birthdayMusic"
+        );
+
+
+    music.volume=.45;
+
+
+    music.play().catch(
+        () => {
+            console.log(
+                "Browser blocked autoplay."
+            );
+        }
+    );
+
+
+    currentMessage=0;
+
+
+    messages.forEach(
+        (message,index) => {
+
+            message.classList.toggle(
+                "active",
+                index===0
+            );
+
+        }
+    );
+
+
+    updateCounter();
+
+
+    document
+        .getElementById(
+            "nextButton"
+        )
+        .textContent="Next 💗";
+
+
+    /*
+       Put the reader at the beginning.
+    */
+
+    setTimeout(() => {
+
+        document
+            .getElementById(
+                "letterSection"
+            )
+            .scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+
+    },100);
+
+}
+
+
+/* =========================================================
+   NEXT MESSAGE
+========================================================= */
 
 function nextMessage(){
 
-    if(currentMessage < messages.length-1){
+    if(
+        currentMessage <
+        messages.length-1
+    ){
+
+        messages[
+            currentMessage
+        ].classList.remove(
+            "active"
+        );
+
 
         currentMessage++;
 
-        showMessage(currentMessage);
 
-        window.scrollTo({
-            top:
-                document
-                .getElementById("letterSection")
-                .offsetTop - 20,
-            behavior:"smooth"
-        });
+        messages[
+            currentMessage
+        ].classList.add(
+            "active"
+        );
 
-        if(currentMessage === messages.length-1){
+
+        updateCounter();
+
+
+        /*
+           Small controlled movement only.
+           No automatic scrolling through the whole page.
+        */
+
+        document
+            .getElementById(
+                "letterSection"
+            )
+            .scrollIntoView({
+                behavior:"smooth",
+                block:"start"
+            });
+
+
+        if(
+            currentMessage ===
+            messages.length-1
+        ){
 
             document
-            .getElementById("nextBtn")
-            .textContent =
-                "Finish 💗";
+                .getElementById(
+                    "nextButton"
+                )
+                .textContent =
+                "Finish ❤️";
 
         }
 
+
     }else{
 
-        finishEverything();
+        finishLetter();
 
     }
 
 }
 
 
-/* ==================================================
-   FINAL
-================================================== */
+/* =========================================================
+   FINISH LETTER
+========================================================= */
 
-function finishEverything(){
-
-    document
-    .getElementById("letterSection")
-    .style.display="none";
+function finishLetter(){
 
     document
-    .getElementById("finalSection")
-    .classList.add("show");
+        .getElementById(
+            "letterSection"
+        )
+        .style.display="none";
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
+
+    const final =
+        document.getElementById(
+            "finalSection"
+        );
+
+
+    final.classList.add(
+        "show"
+    );
+
+
+    final.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
     });
 
-    startHeartShower();
+
+    /*
+       Build the bouquet.
+    */
+
+    setTimeout(() => {
+
+        document
+            .getElementById(
+                "bouquet"
+            )
+            .classList.add(
+                "build"
+            );
+
+    },700);
+
+
+    /*
+       After bouquet forms,
+       start the big heart shower.
+    */
+
+    setTimeout(() => {
+
+        startHeartShower();
+
+    },5000);
 
 }
 
 
-/* ==================================================
+/* =========================================================
+   SNOOPY CUT-OUT
+========================================================= */
+
+/*
+   Your Snoopy image has a white background.
+
+   This function looks at every pixel and makes
+   near-white pixels transparent.
+
+   So the visible result becomes much more like
+   a cut-out sticker rather than a white rectangle.
+*/
+
+function makeSnoopyTransparent(){
+
+    const img =
+        document.getElementById(
+            "snoopyRunner"
+        );
+
+
+    const source =
+        new Image();
+
+
+    source.crossOrigin="anonymous";
+
+
+    source.onload=function(){
+
+        const canvas =
+            document.createElement(
+                "canvas"
+            );
+
+
+        canvas.width =
+            source.naturalWidth;
+
+        canvas.height =
+            source.naturalHeight;
+
+
+        const c =
+            canvas.getContext(
+                "2d"
+            );
+
+
+        c.drawImage(
+            source,
+            0,
+            0
+        );
+
+
+        let data;
+
+
+        try{
+
+            data =
+                c.getImageData(
+                    0,
+                    0,
+                    canvas.width,
+                    canvas.height
+                );
+
+        }catch(error){
+
+            /*
+               If GitHub/browser security prevents
+               pixel access, just keep original image.
+            */
+
+            return;
+
+        }
+
+
+        const pixels =
+            data.data;
+
+
+        for(
+            let i=0;
+            i<pixels.length;
+            i+=4
+        ){
+
+            const r=pixels[i];
+
+            const g=pixels[i+1];
+
+            const b=pixels[i+2];
+
+
+            /*
+               White / almost white background.
+            */
+
+            if(
+                r>235 &&
+                g>235 &&
+                b>235
+            ){
+
+                pixels[i+3]=0;
+
+            }
+
+        }
+
+
+        c.putImageData(
+            data,
+            0,
+            0
+        );
+
+
+        img.src =
+            canvas.toDataURL(
+                "image/png"
+            );
+
+    };
+
+
+    source.src =
+        img.src;
+
+}
+
+
+window.addEventListener(
+    "load",
+    makeSnoopyTransparent
+);
+
+
+/* =========================================================
    HEART SHOWER
-================================================== */
+========================================================= */
 
 function startHeartShower(){
 
     const container =
-        document.getElementById("heartShower");
+        document.getElementById(
+            "heartShower"
+        );
 
-    const hearts =
-        ["♥","♡","💗","💖","💘","💕","🩷"];
+
+    const hearts=[
+        "❤️",
+        "💗",
+        "💖",
+        "💕",
+        "💓",
+        "♥",
+        "♡",
+        "🩷"
+    ];
+
 
     /*
-      Big first burst
+       HUGE first wave
     */
 
-    for(let i=0;i<90;i++){
+    for(
+        let i=0;
+        i<130;
+        i++
+    ){
 
-        setTimeout(() => {
+        setTimeout(
+            () => {
 
-            createShowerHeart(container,hearts);
+                createShowerHeart(
+                    container,
+                    hearts
+                );
 
-        },i*45);
+            },
+            i*35
+        );
 
     }
 
+
     /*
-      Continue gentle shower
+       Second wave.
     */
 
-    setInterval(() => {
+    setTimeout(() => {
 
-        createShowerHeart(container,hearts);
+        for(
+            let i=0;
+            i<100;
+            i++
+        ){
 
-    },180);
+            setTimeout(
+                () => {
+
+                    createShowerHeart(
+                        container,
+                        hearts
+                    );
+
+                },
+                i*45
+            );
+
+        }
+
+    },3500);
 
 }
 
 
-function createShowerHeart(container,hearts){
+/* create individual heart */
+
+function createShowerHeart(
+    container,
+    hearts
+){
 
     const heart =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
-    heart.className="shower-heart";
+
+    heart.className=
+        "shower-heart";
+
 
     heart.textContent =
         hearts[
             Math.floor(
-                Math.random()*hearts.length
+                Math.random()*
+                hearts.length
             )
         ];
 
+
     heart.style.left =
-        Math.random()*100+"vw";
+        Math.random()*100+
+        "vw";
+
 
     heart.style.fontSize =
-        (14+Math.random()*24)+"px";
+        13+
+        Math.random()*30+
+        "px";
+
 
     heart.style.animationDuration =
-        (3+Math.random()*4)+"s";
+        3+
+        Math.random()*4+
+        "s";
+
 
     heart.style.setProperty(
         "--drift",
-        (-100+Math.random()*200)+"px"
+        (-130+
+        Math.random()*260)+
+        "px"
     );
 
-    container.appendChild(heart);
 
-    setTimeout(() => {
+    container.appendChild(
+        heart
+    );
 
-        heart.remove();
 
-    },8000);
+    setTimeout(
+        () => {
+            heart.remove();
+        },
+        8500
+    );
 
 }
 
 
-/* ==================================================
-   CLICK HEART BURSTS
-================================================== */
+/* =========================================================
+   BACKGROUND HEARTS
+========================================================= */
 
-document.addEventListener("click",function(e){
+function backgroundHeart(){
 
-    /*
-      Don't create bursts when clicking buttons
-      unnecessarily.
-    */
-
-    if(
-        e.target.tagName === "BUTTON" ||
-        e.target.tagName === "INPUT"
-    ){
-        return;
-    }
-
-    for(let i=0;i<5;i++){
-
-        const heart =
-            document.createElement("div");
-
-        heart.className="click-heart";
-
-        heart.textContent =
-            ["♥","♡","💗"][Math.floor(Math.random()*3)];
-
-        heart.style.left =
-            e.clientX+"px";
-
-        heart.style.top =
-            e.clientY+"px";
-
-        heart.style.setProperty(
-            "--x",
-            (-40+Math.random()*80)+"px"
+    const heart =
+        document.createElement(
+            "div"
         );
 
-        heart.style.setProperty(
-            "--y",
-            (-50+Math.random()*100)+"px"
-        );
 
-        document.body.appendChild(heart);
+    heart.className=
+        "background-heart";
 
-        setTimeout(() => {
 
+    heart.textContent=
+        [
+            "♡",
+            "♥",
+            "💗",
+            "💕"
+        ][
+            Math.floor(
+                Math.random()*4
+            )
+        ];
+
+
+    heart.style.left =
+        Math.random()*100+
+        "vw";
+
+
+    heart.style.fontSize =
+        12+
+        Math.random()*15+
+        "px";
+
+
+    heart.style.animationDuration =
+        6+
+        Math.random()*5+
+        "s";
+
+
+    heart.style.setProperty(
+        "--drift",
+        (-80+
+        Math.random()*160)+
+        "px"
+    );
+
+
+    document.body.appendChild(
+        heart
+    );
+
+
+    setTimeout(
+        () => {
             heart.remove();
+        },
+        12000
+    );
 
-        },1000);
+}
+
+
+setInterval(
+    backgroundHeart,
+    1200
+);
+
+
+/* =========================================================
+   CLICK HEART BURST
+========================================================= */
+
+document.addEventListener(
+    "click",
+    function(e){
+
+        if(
+            e.target.tagName==="BUTTON" ||
+            e.target.tagName==="INPUT"
+        ){
+            return;
+        }
+
+
+        for(
+            let i=0;
+            i<5;
+            i++
+        ){
+
+            const heart =
+                document.createElement(
+                    "div"
+                );
+
+
+            heart.className=
+                "click-heart";
+
+
+            heart.textContent =
+                i%2
+                ?
+                "♡"
+                :
+                "♥";
+
+
+            heart.style.left =
+                e.clientX+"px";
+
+
+            heart.style.top =
+                e.clientY+"px";
+
+
+            heart.style.setProperty(
+                "--x",
+                (-50+
+                Math.random()*100)+
+                "px"
+            );
+
+
+            heart.style.setProperty(
+                "--y",
+                (-70+
+                Math.random()*140)+
+                "px"
+            );
+
+
+            document.body.appendChild(
+                heart
+            );
+
+
+            setTimeout(
+                () => {
+                    heart.remove();
+                },
+                1000
+            );
+
+        }
 
     }
+);
 
-});
 
-
-/* ==================================================
+/* =========================================================
    INITIAL
-================================================== */
+========================================================= */
 
-showMessage(0);
+updateCounter();
 
 </script>
 
