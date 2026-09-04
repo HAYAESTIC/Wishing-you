@@ -1,0 +1,1375 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
+
+<title>A Little Something For You 🕷️❤️</title>
+
+
+<style>
+
+/* =====================================================
+   BASIC SETUP
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+
+    min-height: 100vh;
+
+    background:
+        radial-gradient(
+            circle at 50% 10%,
+            #3b101b 0%,
+            #17070c 30%,
+            #07070a 70%,
+            #020204 100%
+        );
+
+    color: white;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    overflow-x: hidden;
+
+}
+
+
+/* =====================================================
+   SPIDER WEB
+===================================================== */
+
+.web {
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    opacity: .20;
+
+    background-image:
+
+        repeating-radial-gradient(
+            circle at 50% 20%,
+            transparent 0,
+            transparent 35px,
+            rgba(255,255,255,.65) 36px,
+            transparent 38px
+        ),
+
+        linear-gradient(
+            0deg,
+            transparent 49.5%,
+            rgba(255,255,255,.35) 50%,
+            transparent 50.5%
+        ),
+
+        linear-gradient(
+            45deg,
+            transparent 49.5%,
+            rgba(255,255,255,.28) 50%,
+            transparent 50.5%
+        ),
+
+        linear-gradient(
+            -45deg,
+            transparent 49.5%,
+            rgba(255,255,255,.28) 50%,
+            transparent 50.5%
+        );
+
+    z-index: 0;
+
+    animation:
+        webGlow 5s ease-in-out infinite;
+
+}
+
+@keyframes webGlow {
+
+    0%,100% {
+        opacity: .14;
+    }
+
+    50% {
+        opacity: .27;
+    }
+
+}
+
+
+/* =====================================================
+   FLOATING HEARTS
+===================================================== */
+
+.hearts span {
+
+    position: fixed;
+
+    bottom: -50px;
+
+    font-size: 20px;
+
+    opacity: 0;
+
+    z-index: 1;
+
+    animation:
+        floatHeart linear infinite;
+
+}
+
+.hearts span:nth-child(1) {
+    left: 8%;
+    animation-duration: 9s;
+}
+
+.hearts span:nth-child(2) {
+    left: 25%;
+    animation-duration: 12s;
+    animation-delay: 2s;
+}
+
+.hearts span:nth-child(3) {
+    left: 45%;
+    animation-duration: 10s;
+    animation-delay: 4s;
+}
+
+.hearts span:nth-child(4) {
+    left: 68%;
+    animation-duration: 13s;
+    animation-delay: 1s;
+}
+
+.hearts span:nth-child(5) {
+    left: 88%;
+    animation-duration: 11s;
+    animation-delay: 3s;
+}
+
+@keyframes floatHeart {
+
+    0% {
+
+        transform:
+            translateY(0)
+            scale(.5)
+            rotate(0deg);
+
+        opacity: 0;
+
+    }
+
+    15% {
+        opacity: .8;
+    }
+
+    100% {
+
+        transform:
+            translateY(-110vh)
+            scale(1.2)
+            rotate(25deg);
+
+        opacity: 0;
+
+    }
+
+}
+
+
+/* =====================================================
+   SHOOTING STARS
+===================================================== */
+
+.star {
+
+    position: fixed;
+
+    width: 3px;
+    height: 3px;
+
+    background: white;
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 10px white;
+
+    opacity: 0;
+
+    z-index: 1;
+
+    animation:
+        shootingStar 5s linear infinite;
+
+}
+
+.star:nth-child(1) {
+
+    top: 15%;
+    left: 10%;
+    animation-delay: 1s;
+
+}
+
+.star:nth-child(2) {
+
+    top: 35%;
+    left: 80%;
+    animation-delay: 3s;
+
+}
+
+.star:nth-child(3) {
+
+    top: 60%;
+    left: 20%;
+    animation-delay: 5s;
+
+}
+
+@keyframes shootingStar {
+
+    0% {
+
+        transform:
+            translate(0,0);
+
+        opacity: 0;
+
+    }
+
+    10% {
+        opacity: 1;
+    }
+
+    40% {
+
+        transform:
+            translate(180px,120px);
+
+        opacity: 0;
+
+    }
+
+    100% {
+        opacity: 0;
+    }
+
+}
+
+
+/* =====================================================
+   MAIN
+===================================================== */
+
+.container {
+
+    position: relative;
+
+    z-index: 3;
+
+    width: 100%;
+
+    max-width: 760px;
+
+    margin: auto;
+
+    padding:
+        65px 20px 80px;
+
+    text-align: center;
+
+}
+
+
+/* =====================================================
+   TOP SECRET LABEL
+===================================================== */
+
+.top-line {
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    gap: 10px;
+
+    color: #888;
+
+    font-size: 10px;
+
+    letter-spacing: 4px;
+
+    text-transform: uppercase;
+
+    margin-bottom: 25px;
+
+}
+
+.top-line::before,
+.top-line::after {
+
+    content: "";
+
+    width: 40px;
+
+    height: 1px;
+
+    background: #666;
+
+}
+
+
+/* =====================================================
+   SPIDER
+===================================================== */
+
+.spider {
+
+    display: inline-block;
+
+    font-size: 70px;
+
+    filter:
+        drop-shadow(
+            0 0 18px
+            rgba(255,0,40,.65)
+        );
+
+    animation:
+        spiderSwing 3s
+        ease-in-out infinite;
+
+}
+
+@keyframes spiderSwing {
+
+    0%,100% {
+
+        transform:
+            translateY(0)
+            rotate(-4deg);
+
+    }
+
+    50% {
+
+        transform:
+            translateY(14px)
+            rotate(4deg);
+
+    }
+
+}
+
+
+/* =====================================================
+   TITLE
+===================================================== */
+
+.small {
+
+    margin-top: 22px;
+
+    color: #d5d5d5;
+
+    font-size: 11px;
+
+    letter-spacing: 5px;
+
+    text-transform: uppercase;
+
+}
+
+h1 {
+
+    margin-top: 15px;
+
+    font-size:
+        clamp(
+            44px,
+            12vw,
+            78px
+        );
+
+    line-height: 1;
+
+    background:
+        linear-gradient(
+            90deg,
+            #ffffff,
+            #ff3655,
+            #ffffff,
+            #ff3655
+        );
+
+    background-size: 300%;
+
+    -webkit-background-clip: text;
+
+    color: transparent;
+
+    animation:
+        titleShine 5s linear infinite;
+
+}
+
+@keyframes titleShine {
+
+    0% {
+        background-position: 0%;
+    }
+
+    100% {
+        background-position: 300%;
+    }
+
+}
+
+.subtitle {
+
+    margin-top: 22px;
+
+    color: #c2c2c2;
+
+    font-size: 16px;
+
+    line-height: 1.7;
+
+}
+
+
+/* =====================================================
+   OPEN BUTTON
+===================================================== */
+
+.open-button {
+
+    margin-top: 35px;
+
+    padding:
+        16px 30px;
+
+    border:
+        1px solid #ff3655;
+
+    border-radius: 50px;
+
+    background:
+        rgba(255,20,50,.07);
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 15px;
+
+    cursor: pointer;
+
+    transition:
+        .35s ease;
+
+    box-shadow:
+        0 0 25px
+        rgba(255,0,40,.15);
+
+}
+
+.open-button:hover {
+
+    background: #ff3655;
+
+    transform:
+        scale(1.06);
+
+    box-shadow:
+        0 0 35px
+        rgba(255,0,40,.55);
+
+}
+
+
+/* =====================================================
+   STATUS
+===================================================== */
+
+.status {
+
+    margin-top: 20px;
+
+    color: #666;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+}
+
+
+/* =====================================================
+   LETTER
+===================================================== */
+
+.letter {
+
+    margin-top: 55px;
+
+    padding:
+        38px 27px;
+
+    background:
+        rgba(255,255,255,.045);
+
+    border:
+        1px solid
+        rgba(255,255,255,.14);
+
+    border-radius: 24px;
+
+    backdrop-filter:
+        blur(14px);
+
+    box-shadow:
+
+        0 0 50px
+        rgba(0,0,0,.45),
+
+        inset 0 0 35px
+        rgba(255,0,40,.035);
+
+    opacity: 0;
+
+    transform:
+        translateY(45px);
+
+    max-height: 0;
+
+    overflow: hidden;
+
+    transition:
+
+        opacity 1.2s ease,
+
+        transform 1.2s ease,
+
+        max-height 2.5s ease;
+
+}
+
+.letter.show {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+    max-height: 3000px;
+
+}
+
+
+.letter-decoration {
+
+    color: #ff3655;
+
+    font-size: 20px;
+
+    letter-spacing: 8px;
+
+    margin-bottom: 25px;
+
+}
+
+
+.letter h2 {
+
+    color: #ff4560;
+
+    font-size: 30px;
+
+    margin-bottom: 30px;
+
+}
+
+
+.letter p {
+
+    text-align: left;
+
+    line-height: 2;
+
+    color: #ededed;
+
+    font-size: 16px;
+
+    white-space: pre-line;
+
+}
+
+
+/* =====================================================
+   HEART
+===================================================== */
+
+.big-heart {
+
+    font-size: 48px;
+
+    margin:
+        35px 0;
+
+    animation:
+        heartbeat 1.5s infinite;
+
+    filter:
+        drop-shadow(
+            0 0 12px
+            rgba(255,0,40,.5)
+        );
+
+}
+
+@keyframes heartbeat {
+
+    0%,100% {
+        transform: scale(1);
+    }
+
+    15% {
+        transform: scale(1.25);
+    }
+
+    30% {
+        transform: scale(1);
+    }
+
+    45% {
+        transform: scale(1.16);
+    }
+
+}
+
+
+/* =====================================================
+   P.S. NOTE
+===================================================== */
+
+.note {
+
+    margin-top: 30px;
+
+    padding: 18px;
+
+    border-left:
+        2px solid #ff3655;
+
+    background:
+        rgba(255,255,255,.025);
+
+    color: #aaa;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+    text-align: left;
+
+}
+
+
+/* =====================================================
+   MUSIC
+===================================================== */
+
+.music-message {
+
+    margin-top: 65px;
+
+    padding:
+        28px 20px;
+
+    border-radius: 22px;
+
+    background:
+        rgba(255,255,255,.035);
+
+    border:
+        1px solid
+        rgba(255,255,255,.1);
+
+}
+
+.music-message .music-icon {
+
+    font-size: 30px;
+
+    margin-bottom: 10px;
+
+}
+
+.music-message h2 {
+
+    color: #ff4560;
+
+    font-size: 21px;
+
+    margin-bottom: 10px;
+
+}
+
+.music-message p {
+
+    color: #888;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+
+}
+
+
+/* Hide music controls */
+
+#backgroundMusic {
+
+    display: none;
+
+}
+
+
+/* =====================================================
+   FINAL
+===================================================== */
+
+.final {
+
+    margin-top: 65px;
+
+    opacity: 0;
+
+    transform:
+        translateY(25px);
+
+    transition:
+        1.5s ease;
+
+}
+
+.final.show {
+
+    opacity: 1;
+
+    transform:
+        translateY(0);
+
+}
+
+.final-heart {
+
+    font-size: 20px;
+
+    margin-bottom: 15px;
+
+}
+
+.final p {
+
+    color: #777;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+
+    letter-spacing: 1px;
+
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+footer {
+
+    margin-top: 75px;
+
+    color: #555;
+
+    font-size: 10px;
+
+    letter-spacing: 3px;
+
+}
+
+
+/* =====================================================
+   OPENED GLOW
+===================================================== */
+
+body.opened::after {
+
+    content: "";
+
+    position: fixed;
+
+    inset: 0;
+
+    pointer-events: none;
+
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(255,0,45,.08),
+            transparent 55%
+        );
+
+    z-index: 2;
+
+    animation:
+        glowPulse 3s
+        ease-in-out infinite;
+
+}
+
+@keyframes glowPulse {
+
+    0%,100% {
+        opacity: .4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 600px) {
+
+    .container {
+
+        padding:
+            55px 17px 70px;
+
+    }
+
+    .spider {
+
+        font-size: 58px;
+
+    }
+
+    .letter {
+
+        padding:
+            30px 20px;
+
+    }
+
+    .letter p {
+
+        font-size: 15px;
+
+        line-height: 1.9;
+
+    }
+
+    .subtitle {
+
+        font-size: 15px;
+
+    }
+
+}
+
+</style>
+
+</head>
+
+
+<body>
+
+
+<!-- =====================================================
+     BACKGROUND
+===================================================== -->
+
+<div class="web"></div>
+
+
+<div class="star"></div>
+<div class="star"></div>
+<div class="star"></div>
+
+
+<div class="hearts">
+
+    <span>❤️</span>
+    <span>♥️</span>
+    <span>❤️</span>
+    <span>♥️</span>
+    <span>❤️</span>
+
+</div>
+
+
+<!-- =====================================================
+     MAIN
+===================================================== -->
+
+<main class="container">
+
+
+    <div class="top-line">
+        classified message
+    </div>
+
+
+    <div class="spider">
+        🕷️
+    </div>
+
+
+    <div class="small">
+        A little something...
+    </div>
+
+
+    <h1>
+        For You.
+    </h1>
+
+
+    <p class="subtitle">
+
+        Because some things are easier
+        to write than to say.
+
+    </p>
+
+
+    <button
+        class="open-button"
+        onclick="openLetter()"
+    >
+
+        🕸️ Open your message
+
+    </button>
+
+
+    <div
+        class="status"
+        id="status"
+    >
+
+        MESSAGE WAITING...
+
+    </div>
+
+
+    <!-- =================================================
+         LETTER
+    ================================================== -->
+
+    <section
+        class="letter"
+        id="letter"
+    >
+
+
+        <div class="letter-decoration">
+            · · 🕸️ · ·
+        </div>
+
+
+        <h2>
+            Dear You,
+        </h2>
+
+
+        <p>
+
+Okay...
+
+I don't really know how to begin this without making it sound either too dramatic or way too simple.
+
+So maybe I'll just say what I actually mean.
+
+Before I start, I have never ever typed this long for someone, so better appreciate it or main ghar aake tera muh tod dungi 🙂‍↕️.
+
+Forever grateful — not to you, but to myself, because I was the one who sent you that request that day.
+
+You came from nowhere, but I would like to inform you that you have now become a part of my life I would like to keep always.
+
+Well, I may not know much about you, but it doesn't matter.
+
+Allah kare tujhe jo bhi cheez chahiye, Allah tere haq mein use likh de...
+
+Allah Ta'ala tujhe itni khushi de, itni khushiiiiii dee...
+
+Tujhe kamyabi de...
+
+Taki badme tu mujhe shawarma khila sake 😛✌️
+
+
+There are some people who somehow become a part of your days without you even noticing when it happened.
+
+And then one day you realise that their presence means a lot more than you expected.
+
+I hope you always remember that you are appreciated, remembered, and genuinely cared about.
+
+And yes...
+
+You might have your Spider-Man obsession,
+
+but even Spider-Man needs someone in his corner sometimes. 🕷️
+
+        </p>
+
+
+        <div class="big-heart">
+            ❤️
+        </div>
+
+
+        <p style="text-align:center;">
+
+That's all.
+
+Or maybe...
+
+that's not all.
+
+But I'll leave the rest between these lines.
+
+        </p>
+
+
+        <div class="note">
+
+            P.S. — Don't let this website make you too emotional.
+
+            I still expect that shawarma. 😛✌️
+
+        </div>
+
+
+    </section>
+
+
+    <!-- =================================================
+         BACKGROUND MUSIC
+    ================================================== -->
+
+    <section class="music-message">
+
+
+        <div class="music-icon">
+            🎵
+        </div>
+
+
+        <h2>
+            And somewhere in the background...
+        </h2>
+
+
+        <p>
+
+A tiny birthday soundtrack,
+because every little surprise deserves one.
+
+        </p>
+
+
+        <!--
+        =================================================
+        MUSIC FILE
+
+        Put a free-to-use Happy Birthday MP3
+        inside this GitHub repository.
+
+        Name it:
+
+        birthday.mp3
+
+        =================================================
+        -->
+
+        <audio
+            id="backgroundMusic"
+            loop
+            preload="auto"
+        >
+
+            <source
+                src="birthday.mp3"
+                type="audio/mpeg"
+            >
+
+        </audio>
+
+
+    </section>
+
+
+    <!-- =================================================
+         FINAL MESSAGE
+    ================================================== -->
+
+    <section
+        class="final"
+        id="final"
+    >
+
+
+        <div class="final-heart">
+            🕷️ ❤️ 🕸️
+        </div>
+
+
+        <p>
+
+Made with a little bit of code,
+a little bit of chaos,
+and a lot of thought.
+
+        </p>
+
+
+    </section>
+
+
+    <footer>
+
+        MADE ESPECIALLY FOR YOU 🕷️
+
+    </footer>
+
+
+</main>
+
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
+<script>
+
+
+function openLetter() {
+
+
+    /* -----------------------------------------------
+       Get elements
+    ------------------------------------------------ */
+
+    const letter =
+        document.getElementById("letter");
+
+    const status =
+        document.getElementById("status");
+
+    const final =
+        document.getElementById("final");
+
+    const music =
+        document.getElementById(
+            "backgroundMusic"
+        );
+
+
+    /* -----------------------------------------------
+       Open website experience
+    ------------------------------------------------ */
+
+    document.body.classList.add("opened");
+
+    letter.classList.add("show");
+
+
+    status.innerText =
+        "MESSAGE UNLOCKED ❤️";
+
+
+    /* -----------------------------------------------
+       Start background music
+       
+       This is triggered by the person's tap,
+       which gives the browser permission to play
+       audio in many cases.
+    ------------------------------------------------ */
+
+    if (music) {
+
+        music.volume = 0.25;
+
+        music.play().catch(() => {
+
+            /*
+            Some browsers may still block
+            background audio.
+
+            The website itself continues normally.
+            */
+
+        });
+
+    }
+
+
+    /* -----------------------------------------------
+       Show final little message
+    ------------------------------------------------ */
+
+    setTimeout(() => {
+
+        final.classList.add("show");
+
+    }, 1800);
+
+
+    /* -----------------------------------------------
+       Smoothly move to the letter
+    ------------------------------------------------ */
+
+    setTimeout(() => {
+
+        letter.scrollIntoView({
+
+            behavior: "smooth",
+
+            block: "start"
+
+        });
+
+    }, 500);
+
+
+}
+
+
+/* =====================================================
+   LITTLE HEART BURST
+===================================================== */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+
+        if (
+            event.target.classList.contains(
+                "open-button"
+            )
+        ) {
+
+            createHeart(
+                event.clientX,
+                event.clientY
+            );
+
+        }
+
+    }
+);
+
+
+function createHeart(x, y) {
+
+
+    const heart =
+        document.createElement("div");
+
+
+    heart.innerHTML =
+        "❤️";
+
+
+    heart.style.position =
+        "fixed";
+
+
+    heart.style.left =
+        x + "px";
+
+
+    heart.style.top =
+        y + "px";
+
+
+    heart.style.pointerEvents =
+        "none";
+
+
+    heart.style.zIndex =
+        "999";
+
+
+    heart.style.fontSize =
+        "18px";
+
+
+    heart.style.transition =
+        "1.3s ease";
+
+
+    document.body.appendChild(
+        heart
+    );
+
+
+    setTimeout(() => {
+
+        heart.style.transform =
+            "translateY(-90px) scale(1.5)";
+
+        heart.style.opacity =
+            "0";
+
+    }, 50);
+
+
+    setTimeout(() => {
+
+        heart.remove();
+
+    }, 1400);
+
+}
+
+</script>
+
+
+</body>
+
+</html>
