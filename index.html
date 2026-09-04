@@ -2,24 +2,18 @@
 <html lang="en">
 
 <head>
-
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
-
-<title>A Little Something For You 🕷️❤️</title>
-
+<title>For You 🕷️❤️</title>
 
 <style>
 
-/* =====================================================
+/* ==================================================
    BASIC SETUP
-===================================================== */
+================================================== */
 
 * {
-    margin: 0;
-    padding: 0;
     box-sizing: border-box;
 }
 
@@ -28,417 +22,299 @@ html {
 }
 
 body {
-
+    margin: 0;
     min-height: 100vh;
 
-    background:
-        radial-gradient(
-            circle at 50% 10%,
-            #3b101b 0%,
-            #17070c 30%,
-            #07070a 70%,
-            #020204 100%
-        );
+    font-family: Georgia, "Times New Roman", serif;
 
     color: white;
 
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
-    overflow-x: hidden;
-
-}
-
-
-/* =====================================================
-   SPIDER WEB
-===================================================== */
-
-.web {
-
-    position: fixed;
-
-    inset: 0;
-
-    pointer-events: none;
-
-    opacity: .20;
-
-    background-image:
-
-        repeating-radial-gradient(
+    background:
+        radial-gradient(
             circle at 50% 20%,
-            transparent 0,
-            transparent 35px,
-            rgba(255,255,255,.65) 36px,
-            transparent 38px
-        ),
-
-        linear-gradient(
-            0deg,
-            transparent 49.5%,
-            rgba(255,255,255,.35) 50%,
-            transparent 50.5%
-        ),
-
-        linear-gradient(
-            45deg,
-            transparent 49.5%,
-            rgba(255,255,255,.28) 50%,
-            transparent 50.5%
-        ),
-
-        linear-gradient(
-            -45deg,
-            transparent 49.5%,
-            rgba(255,255,255,.28) 50%,
-            transparent 50.5%
+            #32101d 0%,
+            #10070d 35%,
+            #030305 75%
         );
 
-    z-index: 0;
-
-    animation:
-        webGlow 5s ease-in-out infinite;
-
-}
-
-@keyframes webGlow {
-
-    0%,100% {
-        opacity: .14;
-    }
-
-    50% {
-        opacity: .27;
-    }
-
+    overflow-x: hidden;
 }
 
 
-/* =====================================================
-   FLOATING HEARTS
-===================================================== */
+/* ==================================================
+   BACKGROUND SPIDER WEB
+================================================== */
 
-.hearts span {
+body::before {
+    content: "";
 
     position: fixed;
 
-    bottom: -50px;
+    inset: -50%;
 
-    font-size: 20px;
+    z-index: -3;
+
+    opacity: 0.18;
+
+    background:
+        repeating-radial-gradient(
+            circle at center,
+            transparent 0,
+            transparent 70px,
+            rgba(255,255,255,0.18) 71px,
+            transparent 73px
+        );
+
+    transform: rotate(12deg);
+
+    pointer-events: none;
+}
+
+
+/* ==================================================
+   RED ATMOSPHERIC GLOW
+================================================== */
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    width: 500px;
+    height: 500px;
+
+    left: 50%;
+    top: 40%;
+
+    transform:
+        translate(-50%, -50%);
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(255,25,70,0.12),
+            transparent 70%
+        );
+
+    z-index: -2;
+
+    pointer-events: none;
+}
+
+
+/* ==================================================
+   FLOATING HEARTS
+================================================== */
+
+.heart {
+    position: fixed;
+
+    bottom: -30px;
+
+    font-size: 18px;
 
     opacity: 0;
 
-    z-index: 1;
-
     animation:
-        floatHeart linear infinite;
+        floatHeart linear forwards;
 
-}
+    pointer-events: none;
 
-.hearts span:nth-child(1) {
-    left: 8%;
-    animation-duration: 9s;
-}
-
-.hearts span:nth-child(2) {
-    left: 25%;
-    animation-duration: 12s;
-    animation-delay: 2s;
-}
-
-.hearts span:nth-child(3) {
-    left: 45%;
-    animation-duration: 10s;
-    animation-delay: 4s;
-}
-
-.hearts span:nth-child(4) {
-    left: 68%;
-    animation-duration: 13s;
-    animation-delay: 1s;
-}
-
-.hearts span:nth-child(5) {
-    left: 88%;
-    animation-duration: 11s;
-    animation-delay: 3s;
+    z-index: 2;
 }
 
 @keyframes floatHeart {
 
     0% {
-
         transform:
             translateY(0)
-            scale(.5)
-            rotate(0deg);
+            scale(0.5);
 
         opacity: 0;
-
     }
 
     15% {
-        opacity: .8;
+        opacity: 0.8;
+    }
+
+    80% {
+        opacity: 0.7;
     }
 
     100% {
-
         transform:
             translateY(-110vh)
-            scale(1.2)
-            rotate(25deg);
+            scale(1.2);
 
         opacity: 0;
-
     }
-
 }
 
 
-/* =====================================================
+/* ==================================================
    SHOOTING STARS
-===================================================== */
+================================================== */
 
-.star {
-
+.shooting-star {
     position: fixed;
 
-    width: 3px;
-    height: 3px;
+    width: 2px;
+    height: 80px;
 
-    background: white;
+    background:
+        linear-gradient(
+            transparent,
+            rgba(255,255,255,0.9),
+            transparent
+        );
 
-    border-radius: 50%;
+    transform: rotate(45deg);
 
-    box-shadow:
-        0 0 10px white;
+    animation:
+        shooting 4s linear infinite;
 
     opacity: 0;
 
-    z-index: 1;
+    pointer-events: none;
 
-    animation:
-        shootingStar 5s linear infinite;
-
+    z-index: 0;
 }
 
-.star:nth-child(1) {
-
-    top: 15%;
-    left: 10%;
-    animation-delay: 1s;
-
-}
-
-.star:nth-child(2) {
-
-    top: 35%;
-    left: 80%;
-    animation-delay: 3s;
-
-}
-
-.star:nth-child(3) {
-
-    top: 60%;
-    left: 20%;
-    animation-delay: 5s;
-
-}
-
-@keyframes shootingStar {
+@keyframes shooting {
 
     0% {
-
         transform:
-            translate(0,0);
+            translate(0,0)
+            rotate(45deg);
 
         opacity: 0;
-
     }
 
     10% {
-        opacity: 1;
+        opacity: 0.8;
     }
 
     40% {
-
-        transform:
-            translate(180px,120px);
-
         opacity: 0;
-
     }
 
     100% {
+        transform:
+            translate(500px,500px)
+            rotate(45deg);
+
         opacity: 0;
     }
-
 }
 
 
-/* =====================================================
-   MAIN
-===================================================== */
+/* ==================================================
+   MAIN CONTAINER
+================================================== */
 
 .container {
-
-    position: relative;
-
-    z-index: 3;
-
-    width: 100%;
-
-    max-width: 760px;
+    width: min(900px,92%);
 
     margin: auto;
 
-    padding:
-        65px 20px 80px;
+    padding: 70px 0;
 
     text-align: center;
-
 }
 
 
-/* =====================================================
-   TOP SECRET LABEL
-===================================================== */
+/* ==================================================
+   CLASSIFIED
+================================================== */
 
-.top-line {
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 10px;
-
-    color: #888;
-
-    font-size: 10px;
+.classified {
+    font-size: 11px;
 
     letter-spacing: 4px;
+
+    color:
+        rgba(255,255,255,0.45);
 
     text-transform: uppercase;
 
     margin-bottom: 25px;
-
-}
-
-.top-line::before,
-.top-line::after {
-
-    content: "";
-
-    width: 40px;
-
-    height: 1px;
-
-    background: #666;
-
 }
 
 
-/* =====================================================
+/* ==================================================
    SPIDER
-===================================================== */
+================================================== */
 
 .spider {
+    font-size: 48px;
 
     display: inline-block;
 
-    font-size: 70px;
+    animation:
+        spiderSwing 4s ease-in-out infinite;
 
     filter:
         drop-shadow(
-            0 0 18px
-            rgba(255,0,40,.65)
+            0 0 15px
+            rgba(255,0,60,0.5)
         );
-
-    animation:
-        spiderSwing 3s
-        ease-in-out infinite;
-
 }
 
 @keyframes spiderSwing {
 
     0%,100% {
-
-        transform:
-            translateY(0)
-            rotate(-4deg);
-
+        transform: rotate(-8deg);
     }
 
     50% {
-
-        transform:
-            translateY(14px)
-            rotate(4deg);
-
+        transform: rotate(8deg);
     }
-
 }
 
 
-/* =====================================================
+/* ==================================================
    TITLE
-===================================================== */
+================================================== */
 
-.small {
+.small-title {
+    margin-top: 20px;
 
-    margin-top: 22px;
+    font-size: 18px;
 
-    color: #d5d5d5;
+    color:
+        rgba(255,255,255,0.7);
 
-    font-size: 11px;
-
-    letter-spacing: 5px;
-
-    text-transform: uppercase;
-
+    letter-spacing: 2px;
 }
 
 h1 {
-
-    margin-top: 15px;
+    margin: 10px 0;
 
     font-size:
-        clamp(
-            44px,
-            12vw,
-            78px
-        );
-
-    line-height: 1;
+        clamp(55px,13vw,105px);
 
     background:
         linear-gradient(
             90deg,
             #ffffff,
-            #ff3655,
+            #ff3158,
             #ffffff,
-            #ff3655
+            #ff3158
         );
 
     background-size: 300%;
 
     -webkit-background-clip: text;
 
+    background-clip: text;
+
     color: transparent;
 
     animation:
-        titleShine 5s linear infinite;
-
+        titleGlow 6s linear infinite;
 }
 
-@keyframes titleShine {
+@keyframes titleGlow {
 
     0% {
         background-position: 0%;
@@ -447,42 +323,35 @@ h1 {
     100% {
         background-position: 300%;
     }
-
 }
 
 .subtitle {
-
-    margin-top: 22px;
-
-    color: #c2c2c2;
-
     font-size: 16px;
 
-    line-height: 1.7;
+    color:
+        rgba(255,255,255,0.65);
 
+    margin-bottom: 40px;
 }
 
 
-/* =====================================================
+/* ==================================================
    OPEN BUTTON
-===================================================== */
+================================================== */
 
 .open-button {
-
-    margin-top: 35px;
-
-    padding:
-        16px 30px;
-
     border:
-        1px solid #ff3655;
-
-    border-radius: 50px;
+        1px solid
+        rgba(255,70,100,0.6);
 
     background:
-        rgba(255,20,50,.07);
+        rgba(255,20,60,0.08);
 
     color: white;
+
+    padding: 15px 28px;
+
+    border-radius: 30px;
 
     font-family: inherit;
 
@@ -490,167 +359,140 @@ h1 {
 
     cursor: pointer;
 
-    transition:
-        .35s ease;
-
     box-shadow:
-        0 0 25px
-        rgba(255,0,40,.15);
+        0 0 20px
+        rgba(255,0,60,0.15);
 
+    transition:
+        0.35s ease;
 }
 
 .open-button:hover {
 
-    background: #ff3655;
-
     transform:
-        scale(1.06);
+        translateY(-3px)
+        scale(1.03);
+
+    background:
+        rgba(255,30,70,0.18);
 
     box-shadow:
-        0 0 35px
-        rgba(255,0,40,.55);
-
+        0 0 30px
+        rgba(255,0,60,0.4);
 }
 
 
-/* =====================================================
+/* ==================================================
    STATUS
-===================================================== */
+================================================== */
 
 .status {
-
-    margin-top: 20px;
-
-    color: #666;
+    margin-top: 18px;
 
     font-size: 10px;
 
     letter-spacing: 3px;
 
+    color:
+        rgba(255,255,255,0.35);
 }
 
 
-/* =====================================================
+/* ==================================================
    LETTER
-===================================================== */
+================================================== */
 
 .letter {
+    display: none;
 
-    margin-top: 55px;
+    margin: 50px auto 0;
 
-    padding:
-        38px 27px;
+    max-width: 720px;
 
-    background:
-        rgba(255,255,255,.045);
-
-    border:
-        1px solid
-        rgba(255,255,255,.14);
-
-    border-radius: 24px;
-
-    backdrop-filter:
-        blur(14px);
-
-    box-shadow:
-
-        0 0 50px
-        rgba(0,0,0,.45),
-
-        inset 0 0 35px
-        rgba(255,0,40,.035);
-
-    opacity: 0;
-
-    transform:
-        translateY(45px);
-
-    max-height: 0;
-
-    overflow: hidden;
-
-    transition:
-
-        opacity 1.2s ease,
-
-        transform 1.2s ease,
-
-        max-height 2.5s ease;
-
-}
-
-.letter.show {
-
-    opacity: 1;
-
-    transform:
-        translateY(0);
-
-    max-height: 3000px;
-
-}
-
-
-.letter-decoration {
-
-    color: #ff3655;
-
-    font-size: 20px;
-
-    letter-spacing: 8px;
-
-    margin-bottom: 25px;
-
-}
-
-
-.letter h2 {
-
-    color: #ff4560;
-
-    font-size: 30px;
-
-    margin-bottom: 30px;
-
-}
-
-
-.letter p {
+    padding: 35px 30px;
 
     text-align: left;
 
-    line-height: 2;
+    background:
+        rgba(255,255,255,0.055);
 
-    color: #ededed;
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
+
+    border-radius: 25px;
+
+    backdrop-filter: blur(12px);
+
+    box-shadow:
+        0 0 40px
+        rgba(255,0,60,0.12);
+
+    animation:
+        letterReveal 1.4s ease forwards;
+}
+
+@keyframes letterReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(40px)
+            scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
+    }
+}
+
+.letter p {
 
     font-size: 16px;
 
-    white-space: pre-line;
+    line-height: 1.9;
 
+    color:
+        rgba(255,255,255,0.88);
+
+    margin:
+        0 0 22px;
+}
+
+.letter .opening {
+
+    font-size: 18px;
+
+    color: white;
 }
 
 
-/* =====================================================
-   HEART
-===================================================== */
+/* ==================================================
+   HEARTBEAT HEART
+================================================== */
 
 .big-heart {
 
-    font-size: 48px;
+    text-align: center;
+
+    font-size: 55px;
 
     margin:
-        35px 0;
+        15px 0 25px;
 
     animation:
-        heartbeat 1.5s infinite;
+        heartbeat 1.5s ease-in-out infinite;
 
     filter:
         drop-shadow(
-            0 0 12px
-            rgba(255,0,40,.5)
+            0 0 10px
+            rgba(255,0,60,0.7)
         );
-
 }
 
 @keyframes heartbeat {
@@ -660,7 +502,7 @@ h1 {
     }
 
     15% {
-        transform: scale(1.25);
+        transform: scale(1.16);
     }
 
     30% {
@@ -668,287 +510,878 @@ h1 {
     }
 
     45% {
-        transform: scale(1.16);
+        transform: scale(1.12);
     }
-
 }
 
 
-/* =====================================================
-   P.S. NOTE
-===================================================== */
+/* ==================================================
+   LITTLE NOTE
+================================================== */
 
 .note {
 
     margin-top: 30px;
 
-    padding: 18px;
+    padding: 20px;
 
     border-left:
-        2px solid #ff3655;
+        2px solid #ff3158;
 
     background:
-        rgba(255,255,255,.025);
+        rgba(255,30,70,0.06);
 
-    color: #aaa;
+    border-radius: 10px;
 
-    font-size: 13px;
+    color:
+        rgba(255,255,255,0.75);
+
+    font-size: 14px;
 
     line-height: 1.7;
-
-    text-align: left;
-
 }
 
 
-/* =====================================================
+/* ==================================================
    MUSIC
-===================================================== */
+================================================== */
 
-.music-message {
+.music-note {
 
-    margin-top: 65px;
+    text-align: center;
 
-    padding:
-        28px 20px;
-
-    border-radius: 22px;
-
-    background:
-        rgba(255,255,255,.035);
-
-    border:
-        1px solid
-        rgba(255,255,255,.1);
-
-}
-
-.music-message .music-icon {
-
-    font-size: 30px;
-
-    margin-bottom: 10px;
-
-}
-
-.music-message h2 {
-
-    color: #ff4560;
-
-    font-size: 21px;
-
-    margin-bottom: 10px;
-
-}
-
-.music-message p {
-
-    color: #888;
+    margin:
+        35px 0 10px;
 
     font-size: 13px;
 
-    line-height: 1.7;
+    color:
+        rgba(255,255,255,0.45);
 
+    letter-spacing: 1px;
 }
 
 
-/* Hide music controls */
+/* ==================================================
+   FINAL MESSAGE
+================================================== */
 
-#backgroundMusic {
+.final-message {
 
     display: none;
 
+    margin:
+        45px auto 0;
+
+    max-width: 600px;
+
+    text-align: center;
+
+    animation:
+        finalReveal 2s ease forwards;
+}
+
+@keyframes finalReveal {
+
+    from {
+        opacity: 0;
+
+        transform:
+            translateY(20px);
+    }
+
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0);
+    }
+}
+
+.final-message h2 {
+
+    font-size:
+        clamp(28px,7vw,45px);
+
+    margin-bottom: 10px;
+
+    color: #ff3158;
+
+    text-shadow:
+        0 0 15px
+        rgba(255,0,60,0.6);
+}
+
+.final-message p {
+
+    color:
+        rgba(255,255,255,0.6);
+
+    line-height: 1.7;
 }
 
 
-/* =====================================================
-   FINAL
-===================================================== */
-
-.final {
-
-    margin-top: 65px;
-
-    opacity: 0;
-
-    transform:
-        translateY(25px);
-
-    transition:
-        1.5s ease;
-
-}
-
-.final.show {
-
-    opacity: 1;
-
-    transform:
-        translateY(0);
-
-}
-
-.final-heart {
-
-    font-size: 20px;
-
-    margin-bottom: 15px;
-
-}
-
-.final p {
-
-    color: #777;
-
-    font-size: 12px;
-
-    line-height: 1.8;
-
-    letter-spacing: 1px;
-
-}
-
-
-/* =====================================================
+/* ==================================================
    FOOTER
-===================================================== */
+================================================== */
 
 footer {
 
-    margin-top: 75px;
+    margin-top: 70px;
 
-    color: #555;
+    font-size: 11px;
 
-    font-size: 10px;
+    letter-spacing: 2px;
 
-    letter-spacing: 3px;
-
+    color:
+        rgba(255,255,255,0.25);
 }
 
 
-/* =====================================================
+/* ==================================================
    OPENED GLOW
-===================================================== */
+================================================== */
 
 body.opened::after {
 
-    content: "";
+    animation:
+        redGlow 3s
+        ease-in-out
+        infinite alternate;
+}
+
+@keyframes redGlow {
+
+    from {
+        opacity: 0.5;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+/* ==================================================
+   🔐 SECRET PASSWORD SCREEN
+================================================== */
+
+#passwordScreen {
 
     position: fixed;
 
     inset: 0;
 
-    pointer-events: none;
+    z-index: 100000;
 
     background:
         radial-gradient(
-            circle at 50% 50%,
-            rgba(255,0,45,.08),
-            transparent 55%
+            circle at center,
+            #160811,
+            #050509 55%,
+            #000000
         );
 
-    z-index: 2;
+    display: flex;
 
-    animation:
-        glowPulse 3s
-        ease-in-out infinite;
+    align-items: center;
 
+    justify-content: center;
+
+    overflow: hidden;
+
+    transition:
+        opacity 1s ease,
+        visibility 1s ease;
 }
 
-@keyframes glowPulse {
+
+/* Spider web */
+
+.web-container {
+
+    position: absolute;
+
+    inset: 0;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    transition:
+        transform 1.5s ease,
+        opacity 1.5s ease;
+}
+
+
+/* Actual web */
+
+.spider-web {
+
+    width: min(600px,120vw);
+
+    height: min(600px,120vw);
+
+    border-radius: 50%;
+
+    position: relative;
+
+    filter:
+        drop-shadow(
+            0 0 15px
+            rgba(255,255,255,0.18)
+        );
+
+    animation:
+        webPulse 4s ease-in-out infinite;
+}
+
+
+/* Web rings */
+
+.spider-web::before,
+.spider-web::after {
+
+    content: "";
+
+    position: absolute;
+
+    inset: 8%;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.38);
+
+    border-radius: 50%;
+
+    box-shadow:
+        0 0 0 55px rgba(0,0,0,0),
+        0 0 0 56px rgba(255,255,255,0.08),
+        0 0 0 110px rgba(0,0,0,0),
+        0 0 0 111px rgba(255,255,255,0.07),
+        0 0 0 165px rgba(0,0,0,0),
+        0 0 0 166px rgba(255,255,255,0.06);
+}
+
+
+/* Web radial strings */
+
+.web-line {
+
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    width: 48%;
+
+    height: 1px;
+
+    transform-origin: left center;
+
+    background:
+        linear-gradient(
+            to right,
+            rgba(255,255,255,0.45),
+            rgba(255,255,255,0.08)
+        );
+}
+
+
+/* Different web directions */
+
+.web-line:nth-child(1) {
+    transform: rotate(0deg);
+}
+
+.web-line:nth-child(2) {
+    transform: rotate(30deg);
+}
+
+.web-line:nth-child(3) {
+    transform: rotate(60deg);
+}
+
+.web-line:nth-child(4) {
+    transform: rotate(90deg);
+}
+
+.web-line:nth-child(5) {
+    transform: rotate(120deg);
+}
+
+.web-line:nth-child(6) {
+    transform: rotate(150deg);
+}
+
+.web-line:nth-child(7) {
+    transform: rotate(180deg);
+}
+
+.web-line:nth-child(8) {
+    transform: rotate(210deg);
+}
+
+.web-line:nth-child(9) {
+    transform: rotate(240deg);
+}
+
+.web-line:nth-child(10) {
+    transform: rotate(270deg);
+}
+
+.web-line:nth-child(11) {
+    transform: rotate(300deg);
+}
+
+.web-line:nth-child(12) {
+    transform: rotate(330deg);
+}
+
+
+@keyframes webPulse {
 
     0%,100% {
-        opacity: .4;
+        transform: scale(1);
     }
 
     50% {
-        opacity: 1;
+        transform: scale(1.025);
     }
-
 }
 
 
-/* =====================================================
-   MOBILE
-===================================================== */
+/* Password box */
 
-@media (max-width: 600px) {
+.password-box {
+
+    position: relative;
+
+    z-index: 5;
+
+    width: min(340px,85%);
+
+    text-align: center;
+
+    padding: 32px 25px;
+
+    background:
+        rgba(5,5,9,0.72);
+
+    border:
+        1px solid
+        rgba(255,255,255,0.16);
+
+    border-radius: 22px;
+
+    backdrop-filter: blur(15px);
+
+    box-shadow:
+        0 0 50px
+        rgba(255,0,60,0.18);
+}
+
+
+.lock-icon {
+
+    font-size: 34px;
+
+    margin-bottom: 8px;
+
+    filter:
+        drop-shadow(
+            0 0 10px
+            rgba(255,0,60,0.6)
+        );
+}
+
+
+.password-box h2 {
+
+    margin:
+        5px 0 8px;
+
+    font-size: 25px;
+
+    letter-spacing: 3px;
+}
+
+
+.password-box p {
+
+    margin:
+        0 0 22px;
+
+    color:
+        rgba(255,255,255,0.55);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+.password-input {
+
+    width: 100%;
+
+    padding: 13px 16px;
+
+    border:
+        1px solid
+        rgba(255,70,100,0.35);
+
+    border-radius: 25px;
+
+    outline: none;
+
+    background:
+        rgba(255,255,255,0.06);
+
+    color: white;
+
+    text-align: center;
+
+    font-size: 16px;
+
+    font-family: inherit;
+
+    letter-spacing: 4px;
+}
+
+
+.password-input::placeholder {
+
+    color:
+        rgba(255,255,255,0.3);
+
+    letter-spacing: 2px;
+}
+
+
+.unlock-button {
+
+    margin-top: 14px;
+
+    width: 100%;
+
+    padding: 13px;
+
+    border: none;
+
+    border-radius: 25px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #8e1029,
+            #ff3158
+        );
+
+    color: white;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 0 20px
+        rgba(255,0,60,0.2);
+
+    transition:
+        0.3s ease;
+}
+
+
+.unlock-button:hover {
+
+    transform:
+        scale(1.03);
+
+    box-shadow:
+        0 0 30px
+        rgba(255,0,60,0.45);
+}
+
+
+.wrong-password {
+
+    min-height: 20px;
+
+    margin-top: 12px;
+
+    color: #ff5272;
+
+    font-size: 12px;
+}
+
+
+/* ==================================================
+   WEB OPEN ANIMATION
+================================================== */
+
+#passwordScreen.web-opened .web-container {
+
+    transform:
+        scale(3)
+        rotate(18deg);
+
+    opacity: 0;
+}
+
+
+#passwordScreen.web-opened .password-box {
+
+    transform:
+        scale(0.6);
+
+    opacity: 0;
+
+    transition:
+        0.8s ease;
+}
+
+
+#passwordScreen.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+/* ==================================================
+   ❤️ LIVE HEART INTRO
+================================================== */
+
+#birthdayIntro {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 99999;
+
+    background:
+        radial-gradient(
+            circle at center,
+            #160811 0%,
+            #050509 55%,
+            #000000 100%
+        );
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    transition:
+        opacity 1.5s ease,
+        visibility 1.5s ease;
+}
+
+
+#birthdayIntro.show {
+
+    opacity: 1;
+
+    visibility: visible;
+}
+
+
+#birthdayIntro::before {
+
+    content: "";
+
+    position: absolute;
+
+    inset: -50%;
+
+    opacity: 0.12;
+
+    background:
+        repeating-radial-gradient(
+            circle at center,
+            transparent 0,
+            transparent 80px,
+            rgba(255,255,255,0.3) 81px,
+            transparent 83px
+        );
+
+    transform: rotate(15deg);
+}
+
+
+#heartCanvas {
+
+    position: absolute;
+
+    inset: 0;
+
+    width: 100%;
+
+    height: 100%;
+}
+
+
+.birthdayText {
+
+    position: relative;
+
+    z-index: 2;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    font-weight: bold;
+
+    letter-spacing: 5px;
+
+    line-height: 1.3;
+
+    opacity: 0;
+
+    transform: scale(0.4);
+
+    text-align: center;
+
+    color: white;
+
+    text-shadow:
+        0 0 8px #ff1744,
+        0 0 20px #ff1744,
+        0 0 40px #ff1744,
+        0 0 70px rgba(255,0,60,0.7);
+
+    transition:
+        opacity 1.2s ease,
+        transform 1.2s cubic-bezier(.17,.89,.32,1.49);
+}
+
+
+.birthdayText span:first-child {
+
+    font-size:
+        clamp(20px,6vw,42px);
+}
+
+
+.birthdayText span:last-child {
+
+    font-size:
+        clamp(30px,9vw,65px);
+
+    color:
+        #ff3158;
+}
+
+
+#birthdayIntro.complete .birthdayText {
+
+    opacity: 1;
+
+    transform:
+        scale(1);
+}
+
+
+#birthdayIntro.hide {
+
+    opacity: 0;
+
+    visibility: hidden;
+
+    pointer-events: none;
+}
+
+
+/* ==================================================
+   MOBILE
+================================================== */
+
+@media (max-width:600px) {
 
     .container {
 
         padding:
-            55px 17px 70px;
-
-    }
-
-    .spider {
-
-        font-size: 58px;
-
+            55px 0;
     }
 
     .letter {
 
         padding:
-            30px 20px;
-
+            28px 22px;
     }
 
     .letter p {
 
         font-size: 15px;
 
-        line-height: 1.9;
-
+        line-height: 1.85;
     }
 
-    .subtitle {
+    .spider {
 
-        font-size: 15px;
-
+        font-size: 40px;
     }
 
+    .birthdayText {
+
+        letter-spacing: 3px;
+    }
 }
 
 </style>
-
 </head>
 
 
 <body>
 
 
-<!-- =====================================================
-     BACKGROUND
-===================================================== -->
+<!-- ==================================================
+     🔐 PASSWORD / CLOSED WEB
+================================================== -->
 
-<div class="web"></div>
-
-
-<div class="star"></div>
-<div class="star"></div>
-<div class="star"></div>
+<div id="passwordScreen">
 
 
-<div class="hearts">
+    <div class="web-container">
 
-    <span>❤️</span>
-    <span>♥️</span>
-    <span>❤️</span>
-    <span>♥️</span>
-    <span>❤️</span>
+        <div class="spider-web">
+
+            <div class="web-line"></div>
+            <div class="web-line"></div>
+            <div class="web-line"></div>
+            <div class="web-line"></div>
+            <div class="web-line"></div>
+            <div class="web-line"></div>
+            <div class="web-line"></div>
+            <div class="web-line"></div>
+            <div class="web-line"></div>
+            <div class="web-line"></div>
+            <div class="web-line"></div>
+            <div class="web-line"></div>
+
+        </div>
+
+    </div>
+
+
+    <div class="password-box">
+
+        <div class="lock-icon">
+            🕷️
+        </div>
+
+        <h2>
+            CLASSIFIED
+        </h2>
+
+        <p>
+            This message is sealed behind the web.
+            <br>
+            Enter the secret code to open it.
+        </p>
+
+
+        <input
+            id="passwordInput"
+            class="password-input"
+            type="password"
+            placeholder="SECRET CODE"
+            autocomplete="off"
+        >
+
+
+        <button
+            class="unlock-button"
+            onclick="unlockWeb()">
+
+            🕸️ Open the Web
+
+        </button>
+
+
+        <div
+            id="wrongPassword"
+            class="wrong-password">
+        </div>
+
+    </div>
 
 </div>
 
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
+<!-- ==================================================
+     ❤️ LIVE HEART INTRO
+================================================== -->
 
-<main class="container">
+<div id="birthdayIntro">
+
+    <canvas id="heartCanvas"></canvas>
+
+    <div class="birthdayText">
+
+        <span>HAPPY</span>
+
+        <span>BIRTHDAY</span>
+
+    </div>
+
+</div>
 
 
-    <div class="top-line">
+<!-- ==================================================
+     SHOOTING STARS
+================================================== -->
+
+<div
+    class="shooting-star"
+    style="left:10%; top:5%; animation-delay:1s;">
+</div>
+
+<div
+    class="shooting-star"
+    style="left:70%; top:10%; animation-delay:2.5s;">
+</div>
+
+<div
+    class="shooting-star"
+    style="left:30%; top:35%; animation-delay:4s;">
+</div>
+
+
+<!-- ==================================================
+     MAIN WEBSITE
+================================================== -->
+
+<div class="container">
+
+
+    <div class="classified">
         classified message
     </div>
 
@@ -958,7 +1391,7 @@ body.opened::after {
     </div>
 
 
-    <div class="small">
+    <div class="small-title">
         A little something...
     </div>
 
@@ -968,18 +1401,14 @@ body.opened::after {
     </h1>
 
 
-    <p class="subtitle">
-
-        Because some things are easier
-        to write than to say.
-
-    </p>
+    <div class="subtitle">
+        Because some things are easier to write than to say.
+    </div>
 
 
     <button
         class="open-button"
-        onclick="openLetter()"
-    >
+        onclick="openLetter()">
 
         🕸️ Open your message
 
@@ -988,72 +1417,20 @@ body.opened::after {
 
     <div
         class="status"
-        id="status"
-    >
+        id="status">
 
         MESSAGE WAITING...
 
     </div>
 
 
-    <!-- =================================================
+    <!-- ==================================================
          LETTER
     ================================================== -->
 
     <section
         class="letter"
-        id="letter"
-    >
-
-
-        <div class="letter-decoration">
-            · · 🕸️ · ·
-        </div>
-
-
-        <h2>
-            Dear You,
-        </h2>
-
-
-        <p>
-
-Okay...
-
-I don't really know how to begin this without making it sound either too dramatic or way too simple.
-
-So maybe I'll just say what I actually mean.
-
-Before I start, I have never ever typed this long for someone, so better appreciate it or main ghar aake tera muh tod dungi 🙂‍↕️.
-
-Forever grateful — not to you, but to myself, because I was the one who sent you that request that day.
-
-You came from nowhere, but I would like to inform you that you have now become a part of my life I would like to keep always.
-
-Well, I may not know much about you, but it doesn't matter.
-
-Allah kare tujhe jo bhi cheez chahiye, Allah tere haq mein use likh de...
-
-Allah Ta'ala tujhe itni khushi de, itni khushiiiiii dee...
-
-Tujhe kamyabi de...
-
-Taki badme tu mujhe shawarma khila sake 😛✌️
-
-
-There are some people who somehow become a part of your days without you even noticing when it happened.
-
-And then one day you realise that their presence means a lot more than you expected.
-
-I hope you always remember that you are appreciated, remembered, and genuinely cared about.
-
-And yes...
-
-You might have your Spider-Man obsession,
-
-but even Spider-Man needs someone in his corner sometimes. 🕷️
-
-        </p>
+        id="letter">
 
 
         <div class="big-heart">
@@ -1061,80 +1438,150 @@ but even Spider-Man needs someone in his corner sometimes. 🕷️
         </div>
 
 
-        <p style="text-align:center;">
+        <p class="opening">
 
-That's all.
+            Okay... I don't really know how to begin this
+            without making it sound either too dramatic
+            or way too simple.
 
-Or maybe...
+        </p>
 
-that's not all.
 
-But I'll leave the rest between these lines.
+        <p>
+
+            So maybe I'll just say what I actually mean.
+
+        </p>
+
+
+        <p>
+
+            Before I start I tell you I have never ever
+            typed this long for someone so better appreciate
+            or main ghar ake tera muh tod dugi 🙂‍↕️.
+
+        </p>
+
+
+        <p>
+
+            Forever grateful—not to you, but to myself,
+            because I was the one who sent you that request
+            that day.
+
+        </p>
+
+
+        <p>
+
+            You came from nowhere but I would like to inform
+            you that you have now become a part of my life
+            I would like to keep always.
+
+        </p>
+
+
+        <p>
+
+            Well I may be not knowing much about you but
+            it doesn't matter.
+
+        </p>
+
+
+        <p>
+
+            There are some people who somehow become a part
+            of your days without you even noticing when it
+            happened.
+
+        </p>
+
+
+        <p>
+
+            And then one day you realise that their presence
+            means a lot more than you expected.
+
+        </p>
+
+
+        <p>
+
+            Allah kare tujhe jo bhi cheez chahiye Allah tere
+            haq main use likde...
+
+        </p>
+
+
+        <p>
+
+            Allah tala tujhe itni khushi de itni khushiiiii
+            dee... tujhe kamyabi de...
+
+        </p>
+
+
+        <p>
+
+            Taki badme tu mujhe shawarma khila sake 😛✌️
+
+        </p>
+
+
+        <p>
+
+            I hope you always remember that you are
+            appreciated, remembered, and genuinely cared about.
+
+        </p>
+
+
+        <p>
+
+            And yes... You might have your Spider-Man
+            obsession, but even Spider-Man needs someone
+            in his corner sometimes. 🕷️
+
+        </p>
+
+
+        <p>
+
+            That's all.
+
+            Or maybe...
+
+            that's not all.
+
+            But I'll leave the rest between these lines.
 
         </p>
 
 
         <div class="note">
 
-            P.S. — Don't let this website make you too emotional.
-
-            I still expect that shawarma. 😛✌️
+            P.S. — Don't let this website make you too
+            emotional. I still expect that shawarma. 😛✌️
 
         </div>
 
 
-    </section>
+        <div class="music-note">
 
-
-    <!-- =================================================
-         BACKGROUND MUSIC
-    ================================================== -->
-
-    <section class="music-message">
-
-
-        <div class="music-icon">
-            🎵
-        </div>
-
-
-        <h2>
             And somewhere in the background...
-        </h2>
 
+        </div>
 
-        <p>
-
-A tiny birthday soundtrack,
-because every little surprise deserves one.
-
-        </p>
-
-
-        <!--
-        =================================================
-        MUSIC FILE
-
-        Put a free-to-use Happy Birthday MP3
-        inside this GitHub repository.
-
-        Name it:
-
-        birthday.mp3
-
-        =================================================
-        -->
 
         <audio
             id="backgroundMusic"
             loop
-            preload="auto"
-        >
+            preload="auto">
 
             <source
                 src="birthday.mp3"
-                type="audio/mpeg"
-            >
+                type="audio/mpeg">
 
         </audio>
 
@@ -1142,65 +1589,545 @@ because every little surprise deserves one.
     </section>
 
 
-    <!-- =================================================
+    <!-- ==================================================
          FINAL MESSAGE
     ================================================== -->
 
     <section
-        class="final"
-        id="final"
-    >
+        class="final-message"
+        id="finalMessage">
 
 
-        <div class="final-heart">
-            🕷️ ❤️ 🕸️
-        </div>
+        <h2>
+            Happy Birthday ❤️
+        </h2>
 
 
         <p>
 
-Made with a little bit of code,
-a little bit of chaos,
-and a lot of thought.
+            Here's to another year of you being you.
+            Stay happy, stay successful, and don't forget
+            the shawarma promise. 🕷️
 
         </p>
-
 
     </section>
 
 
     <footer>
 
-        MADE ESPECIALLY FOR YOU 🕷️
+        made with questionable amounts of effort 🕷️❤️
 
     </footer>
 
 
-</main>
+</div>
 
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
 
 <script>
 
 
+/* ==================================================
+   🔐 PASSWORD
+================================================== */
+
+
+/*
+   CHANGE THIS PASSWORD.
+
+   Example:
+   "spidey"
+
+   Make sure you change ONLY the text
+   inside the quotation marks.
+*/
+
+const SECRET_PASSWORD = "spidey";
+
+
+function unlockWeb() {
+
+
+    const input =
+        document.getElementById(
+            "passwordInput"
+        );
+
+
+    const error =
+        document.getElementById(
+            "wrongPassword"
+        );
+
+
+    const passwordScreen =
+        document.getElementById(
+            "passwordScreen"
+        );
+
+
+    const birthdayIntro =
+        document.getElementById(
+            "birthdayIntro"
+        );
+
+
+    if (
+        input.value ===
+        SECRET_PASSWORD
+    ) {
+
+
+        error.textContent =
+            "WEB ACCESS GRANTED 🕷️";
+
+
+        passwordScreen.classList.add(
+            "web-opened"
+        );
+
+
+        /*
+           After the web opens,
+           start the birthday heart animation.
+        */
+
+        setTimeout(() => {
+
+            passwordScreen.classList.add(
+                "hide"
+            );
+
+            birthdayIntro.classList.add(
+                "show"
+            );
+
+            startHeartAnimation();
+
+        }, 1300);
+
+
+    } else {
+
+
+        error.textContent =
+            "Wrong code... nice try, Spider-Man. 🕷️";
+
+
+        input.value = "";
+
+
+        input.animate(
+
+            [
+                {
+                    transform:
+                        "translateX(-7px)"
+                },
+
+                {
+                    transform:
+                        "translateX(7px)"
+                },
+
+                {
+                    transform:
+                        "translateX(-5px)"
+                },
+
+                {
+                    transform:
+                        "translateX(5px)"
+                },
+
+                {
+                    transform:
+                        "translateX(0)"
+                }
+
+            ],
+
+            {
+                duration: 350
+            }
+
+        );
+
+    }
+
+}
+
+
+/*
+   Pressing Enter also unlocks it.
+*/
+
+document
+    .getElementById("passwordInput")
+    .addEventListener(
+        "keydown",
+        function(event) {
+
+            if (
+                event.key === "Enter"
+            ) {
+
+                unlockWeb();
+
+            }
+
+        }
+    );
+
+
+/* ==================================================
+   ❤️ HEART PARTICLE INTRO
+================================================== */
+
+const canvas =
+    document.getElementById(
+        "heartCanvas"
+    );
+
+const ctx =
+    canvas.getContext("2d");
+
+
+let particles = [];
+
+let heartPoints = [];
+
+let animationStart;
+
+
+function resizeHeartCanvas() {
+
+    canvas.width =
+        window.innerWidth;
+
+    canvas.height =
+        window.innerHeight;
+
+    createHeartPoints();
+
+}
+
+
+window.addEventListener(
+    "resize",
+    resizeHeartCanvas
+);
+
+
+/* ==================================================
+   CREATE HEART
+================================================== */
+
+function createHeartPoints() {
+
+    heartPoints = [];
+
+
+    const scale =
+        Math.min(
+            canvas.width,
+            canvas.height
+        ) * 0.018;
+
+
+    const centerX =
+        canvas.width / 2;
+
+
+    const centerY =
+        canvas.height / 2;
+
+
+    for (
+        let i = 0;
+        i < 220;
+        i++
+    ) {
+
+
+        const t =
+            (Math.PI * 2 * i) /
+            220;
+
+
+        const x =
+            16 *
+            Math.pow(
+                Math.sin(t),
+                3
+            );
+
+
+        const y =
+            13 *
+            Math.cos(t)
+            -
+            5 *
+            Math.cos(2 * t)
+            -
+            2 *
+            Math.cos(3 * t)
+            -
+            Math.cos(4 * t);
+
+
+        heartPoints.push({
+
+            x:
+                centerX +
+                x * scale,
+
+            y:
+                centerY -
+                y * scale
+
+        });
+
+    }
+
+}
+
+
+/* ==================================================
+   START HEART
+================================================== */
+
+function startHeartAnimation() {
+
+
+    particles = [];
+
+
+    resizeHeartCanvas();
+
+
+    animationStart =
+        Date.now();
+
+
+    for (
+        let i = 0;
+        i < 220;
+        i++
+    ) {
+
+
+        particles.push({
+
+            x:
+                canvas.width / 2,
+
+            y:
+                canvas.height / 2,
+
+            targetX:
+                heartPoints[
+                    i %
+                    heartPoints.length
+                ].x,
+
+            targetY:
+                heartPoints[
+                    i %
+                    heartPoints.length
+                ].y,
+
+            delay:
+                i * 13,
+
+            size:
+                Math.random() * 1.8 + 0.8,
+
+            opacity: 0
+
+        });
+
+    }
+
+
+    animateHeart();
+
+
+    /*
+       Reveal HAPPY BIRTHDAY
+    */
+
+    setTimeout(() => {
+
+        document
+            .getElementById(
+                "birthdayIntro"
+            )
+            .classList.add(
+                "complete"
+            );
+
+    }, 3600);
+
+
+    /*
+       Fade into website
+    */
+
+    setTimeout(() => {
+
+        document
+            .getElementById(
+                "birthdayIntro"
+            )
+            .classList.add(
+                "hide"
+            );
+
+    }, 6500);
+
+}
+
+
+/* ==================================================
+   HEART ANIMATION
+================================================== */
+
+function animateHeart() {
+
+
+    ctx.clearRect(
+        0,
+        0,
+        canvas.width,
+        canvas.height
+    );
+
+
+    const elapsed =
+        Date.now() -
+        animationStart;
+
+
+    particles.forEach(
+        (p) => {
+
+
+            if (
+                elapsed >
+                p.delay
+            ) {
+
+
+                const progress =
+                    Math.min(
+                        (
+                            elapsed -
+                            p.delay
+                        ) / 1200,
+                        1
+                    );
+
+
+                const ease =
+                    1 -
+                    Math.pow(
+                        1 - progress,
+                        3
+                    );
+
+
+                p.x =
+                    canvas.width / 2 +
+                    (
+                        p.targetX -
+                        canvas.width / 2
+                    ) *
+                    ease;
+
+
+                p.y =
+                    canvas.height / 2 +
+                    (
+                        p.targetY -
+                        canvas.height / 2
+                    ) *
+                    ease;
+
+
+                p.opacity =
+                    Math.min(
+                        progress * 1.5,
+                        1
+                    );
+
+            }
+
+
+            ctx.beginPath();
+
+
+            ctx.arc(
+                p.x,
+                p.y,
+                p.size,
+                0,
+                Math.PI * 2
+            );
+
+
+            ctx.fillStyle =
+                `rgba(
+                    255,
+                    40,
+                    85,
+                    ${p.opacity}
+                )`;
+
+
+            ctx.shadowBlur = 12;
+
+            ctx.shadowColor =
+                "#ff1744";
+
+
+            ctx.fill();
+
+        }
+    );
+
+
+    requestAnimationFrame(
+        animateHeart
+    );
+
+}
+
+
+/* ==================================================
+   OPEN LETTER
+================================================== */
+
 function openLetter() {
 
 
-    /* -----------------------------------------------
-       Get elements
-    ------------------------------------------------ */
-
     const letter =
-        document.getElementById("letter");
+        document.getElementById(
+            "letter"
+        );
+
 
     const status =
-        document.getElementById("status");
+        document.getElementById(
+            "status"
+        );
 
-    const final =
-        document.getElementById("final");
+
+    const finalMessage =
+        document.getElementById(
+            "finalMessage"
+        );
+
 
     const music =
         document.getElementById(
@@ -1208,59 +2135,45 @@ function openLetter() {
         );
 
 
-    /* -----------------------------------------------
-       Open website experience
-    ------------------------------------------------ */
-
-    document.body.classList.add("opened");
-
-    letter.classList.add("show");
+    document.body.classList.add(
+        "opened"
+    );
 
 
-    status.innerText =
+    letter.style.display =
+        "block";
+
+
+    status.textContent =
         "MESSAGE UNLOCKED ❤️";
 
 
-    /* -----------------------------------------------
-       Start background music
-       
-       This is triggered by the person's tap,
-       which gives the browser permission to play
-       audio in many cases.
-    ------------------------------------------------ */
+    /*
+       Music starts after
+       the user's tap.
+    */
 
-    if (music) {
-
-        music.volume = 0.25;
-
-        music.play().catch(() => {
-
-            /*
-            Some browsers may still block
-            background audio.
-
-            The website itself continues normally.
-            */
-
-        });
-
-    }
+    music.volume = 0.25;
 
 
-    /* -----------------------------------------------
-       Show final little message
-    ------------------------------------------------ */
+    music.play().catch(
+        () => {
+
+            console.log(
+                "Music needs user interaction."
+            );
+
+        }
+    );
+
 
     setTimeout(() => {
 
-        final.classList.add("show");
+        finalMessage.style.display =
+            "block";
 
     }, 1800);
 
-
-    /* -----------------------------------------------
-       Smoothly move to the letter
-    ------------------------------------------------ */
 
     setTimeout(() => {
 
@@ -1272,75 +2185,66 @@ function openLetter() {
 
         });
 
-    }, 500);
-
+    }, 300);
 
 }
 
 
-/* =====================================================
-   LITTLE HEART BURST
-===================================================== */
+/* ==================================================
+   FLOATING HEARTS
+================================================== */
 
-document.addEventListener(
-    "click",
-    function(event) {
-
-
-        if (
-            event.target.classList.contains(
-                "open-button"
-            )
-        ) {
-
-            createHeart(
-                event.clientX,
-                event.clientY
-            );
-
-        }
-
-    }
-);
-
-
-function createHeart(x, y) {
+function createHeart() {
 
 
     const heart =
-        document.createElement("div");
+        document.createElement(
+            "div"
+        );
 
 
-    heart.innerHTML =
-        "❤️";
+    heart.className =
+        "heart";
 
 
-    heart.style.position =
-        "fixed";
+    const hearts = [
+
+        "❤️",
+        "💗",
+        "💖",
+        "💕",
+        "♥️"
+
+    ];
+
+
+    heart.textContent =
+        hearts[
+            Math.floor(
+                Math.random() *
+                hearts.length
+            )
+        ];
 
 
     heart.style.left =
-        x + "px";
+        Math.random() *
+        100 +
+        "vw";
 
 
-    heart.style.top =
-        y + "px";
-
-
-    heart.style.pointerEvents =
-        "none";
-
-
-    heart.style.zIndex =
-        "999";
+    heart.style.animationDuration =
+        5 +
+        Math.random() *
+        5 +
+        "s";
 
 
     heart.style.fontSize =
-        "18px";
-
-
-    heart.style.transition =
-        "1.3s ease";
+        12 +
+        Math.random() *
+        12 +
+        "px";
 
 
     document.body.appendChild(
@@ -1350,25 +2254,138 @@ function createHeart(x, y) {
 
     setTimeout(() => {
 
-        heart.style.transform =
-            "translateY(-90px) scale(1.5)";
-
-        heart.style.opacity =
-            "0";
-
-    }, 50);
-
-
-    setTimeout(() => {
-
         heart.remove();
 
-    }, 1400);
+    }, 10000);
 
 }
 
-</script>
 
+setInterval(
+    createHeart,
+    900
+);
+
+
+/* ==================================================
+   CLICK HEART BURST
+================================================== */
+
+document.addEventListener(
+    "click",
+    function(event) {
+
+
+        for (
+            let i = 0;
+            i < 5;
+            i++
+        ) {
+
+
+            const heart =
+                document.createElement(
+                    "div"
+                );
+
+
+            heart.textContent =
+                "❤️";
+
+
+            heart.style.position =
+                "fixed";
+
+
+            heart.style.left =
+                event.clientX +
+                "px";
+
+
+            heart.style.top =
+                event.clientY +
+                "px";
+
+
+            heart.style.pointerEvents =
+                "none";
+
+
+            heart.style.zIndex =
+                "9999";
+
+
+            heart.style.fontSize =
+                "14px";
+
+
+            const x =
+                (
+                    Math.random() -
+                    0.5
+                ) * 120;
+
+
+            const y =
+                (
+                    Math.random() -
+                    0.5
+                ) * 120;
+
+
+            heart.animate(
+
+                [
+
+                    {
+                        transform:
+                            "translate(0,0) scale(1)",
+
+                        opacity: 1
+                    },
+
+                    {
+                        transform:
+                            `translate(
+                                ${x}px,
+                                ${y}px
+                            )
+                            scale(0)`,
+
+                        opacity: 0
+                    }
+
+                ],
+
+                {
+
+                    duration: 900,
+
+                    easing:
+                        "ease-out"
+
+                }
+
+            );
+
+
+            document.body.appendChild(
+                heart
+            );
+
+
+            setTimeout(() => {
+
+                heart.remove();
+
+            }, 900);
+
+        }
+
+    }
+);
+
+</script>
 
 </body>
 
